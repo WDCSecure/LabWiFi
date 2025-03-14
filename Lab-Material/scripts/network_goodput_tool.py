@@ -50,7 +50,8 @@ server_logger = setup_logger(SERVER_LOG_FILE, "server")
 def run_server():
     """Run iperf3 server and log output."""
     server_logger.info("Starting iperf3 server...")
-    with open(JSON_LOG_SERVER, 'w') as f_json:
+    # Open JSON file in append mode to capture multiple test results
+    with open(JSON_LOG_SERVER, 'a') as f_json:
         proc = subprocess.Popen(
             ["iperf3", "-s", "-J"],
             stdout=f_json,
@@ -86,15 +87,13 @@ def run_client(server_ip, udp=False, bitrate="1M", iterations=10):
                 text=True,
                 check=True
             )
-            # Print iperf3 output to the console
-            print(f"--- Test {i+1} Output ---")
-            print(result.stdout)
             
-            # Save the raw iperf3 output into a text file
+            # Save the raw iperf3 output into a text file with separators
             with open(RAW_OUTPUT_FILE, 'a') as f_raw:
+                f_raw.write(f"----------------------------------------\n")
                 f_raw.write(f"--- Test {i+1} Raw Output ---\n")
                 f_raw.write(result.stdout)
-                f_raw.write("\n")
+                f_raw.write("\n----------------------------------------\n")
             
             data = json.loads(result.stdout)
             # Append JSON data to the client JSON log
@@ -107,19 +106,11 @@ def run_client(server_ip, udp=False, bitrate="1M", iterations=10):
                 "timestamp": datetime.now().isoformat(),
                 "protocol": "UDP" if udp else "TCP",
                 "bitrate": bitrate,
+                "statistic": "",  # Empty for regular test rows
+                "bandwidth": data['end']['sum']['bits_per_second'] / 1e6 if udp else data['end']['sum_sent']['bits_per_second'] / 1e6,
+                "jitter": data['end']['sum']['jitter_ms'] if udp else "",
+                "packet_loss": data['end']['sum']['lost_percent'] if udp else ""
             }
-            
-            if udp:
-                test_data.update({
-                    "bandwidth": data['end']['sum']['bits_per_second'] / 1e6,
-                    "jitter": data['end']['sum']['jitter_ms'],
-                    "packet_loss": data['end']['sum']['lost_percent']
-                })
-            else:
-                test_data["bandwidth"] = data['end']['sum_sent']['bits_per_second'] / 1e6
-                # For TCP, jitter and packet_loss are not applicable
-                test_data["jitter"] = ""
-                test_data["packet_loss"] = ""
             
             results.append(test_data)
             client_logger.info(f"Test {i+1} Bandwidth: {test_data['bandwidth']:.2f} Mbps")
@@ -130,7 +121,7 @@ def run_client(server_ip, udp=False, bitrate="1M", iterations=10):
     # Generate CSV Report with test results and summary statistics
     if results:
         with open(CSV_REPORT, 'w', newline='') as csvfile:
-            fieldnames = ["timestamp", "protocol", "bitrate", "bandwidth", "jitter", "packet_loss"]
+            fieldnames = ["timestamp", "protocol", "bitrate", "statistic", "bandwidth", "jitter", "packet_loss"]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
             for row in results:
@@ -145,19 +136,25 @@ def run_client(server_ip, udp=False, bitrate="1M", iterations=10):
                 "std": statistics.stdev(bandwidths) if len(bandwidths) > 1 else 0,
             }
             if udp:
-                stats["avg_jitter"] = statistics.mean([x['jitter'] for x in results if x['jitter'] != ""])
-                stats["avg_loss"] = statistics.mean([x['packet_loss'] for x in results if x['packet_loss'] != ""])
+                jitters = [x['jitter'] for x in results if x['jitter'] != ""]
+                losses = [x['packet_loss'] for x in results if x['packet_loss'] != ""]
+                stats["avg_jitter"] = statistics.mean(jitters) if jitters else 0
+                stats["avg_loss"] = statistics.mean(losses) if losses else 0
             
-            # Write summary statistics into the CSV as additional rows
-            writer.writerow({})  # blank row for separation
-            writer.writerow({"timestamp": "Summary", "protocol": "min", "bandwidth": stats["min"]})
-            writer.writerow({"timestamp": "Summary", "protocol": "max", "bandwidth": stats["max"]})
-            summary_avg = {"timestamp": "Summary", "protocol": "avg", "bandwidth": stats["avg"]}
+            # Write summary statistics into the CSV
+            writer.writerow({})  # Blank row for separation
+            summary_base = {
+                "timestamp": "Summary",
+                "protocol": "UDP" if udp else "TCP",
+                "bitrate": bitrate
+            }
+            writer.writerow({**summary_base, "statistic": "min", "bandwidth": stats["min"]})
+            writer.writerow({**summary_base, "statistic": "max", "bandwidth": stats["max"]})
+            avg_row = {**summary_base, "statistic": "avg", "bandwidth": stats["avg"]}
             if udp:
-                summary_avg["jitter"] = stats["avg_jitter"]
-                summary_avg["packet_loss"] = stats["avg_loss"]
-            writer.writerow(summary_avg)
-            writer.writerow({"timestamp": "Summary", "protocol": "std", "bandwidth": stats["std"]})
+                avg_row.update({"jitter": stats["avg_jitter"], "packet_loss": stats["avg_loss"]})
+            writer.writerow(avg_row)
+            writer.writerow({**summary_base, "statistic": "std", "bandwidth": stats["std"]})
         
         client_logger.info("\n=== Statistics ===")
         client_logger.info(f"Bandwidth (Mbps): Min={stats['min']:.2f}, Max={stats['max']:.2f}, Avg={stats['avg']:.2f}, Std={stats['std']:.2f}")
