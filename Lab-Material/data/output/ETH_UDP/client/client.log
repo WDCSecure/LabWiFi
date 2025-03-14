@@ -1,0 +1,26 @@
+2025-03-14 15:11:26,373 - INFO - Starting client tests (UDP=True, Bitrate=1G)...
+2025-03-14 15:11:26,374 - INFO - Test 1/10
+2025-03-14 15:11:36,393 - INFO - Test 1 Bandwidth: 948.29 Mbps
+2025-03-14 15:11:36,393 - INFO - Test 2/10
+2025-03-14 15:11:46,408 - INFO - Test 2 Bandwidth: 948.09 Mbps
+2025-03-14 15:11:46,408 - INFO - Test 3/10
+2025-03-14 15:11:56,425 - INFO - Test 3 Bandwidth: 949.12 Mbps
+2025-03-14 15:11:56,425 - INFO - Test 4/10
+2025-03-14 15:12:06,439 - INFO - Test 4 Bandwidth: 952.99 Mbps
+2025-03-14 15:12:06,439 - INFO - Test 5/10
+2025-03-14 15:12:16,455 - INFO - Test 5 Bandwidth: 952.46 Mbps
+2025-03-14 15:12:16,455 - INFO - Test 6/10
+2025-03-14 15:12:26,469 - INFO - Test 6 Bandwidth: 951.08 Mbps
+2025-03-14 15:12:26,469 - INFO - Test 7/10
+2025-03-14 15:12:36,483 - INFO - Test 7 Bandwidth: 951.78 Mbps
+2025-03-14 15:12:36,483 - INFO - Test 8/10
+2025-03-14 15:12:46,499 - INFO - Test 8 Bandwidth: 953.17 Mbps
+2025-03-14 15:12:46,499 - INFO - Test 9/10
+2025-03-14 15:12:56,514 - INFO - Test 9 Bandwidth: 951.15 Mbps
+2025-03-14 15:12:56,514 - INFO - Test 10/10
+2025-03-14 15:13:06,528 - INFO - Test 10 Bandwidth: 950.83 Mbps
+2025-03-14 15:13:06,528 - INFO - 
+=== Statistics ===
+2025-03-14 15:13:06,529 - INFO - Bandwidth (Mbps): Min=948.09, Max=953.17, Avg=950.89, Std=1.85
+2025-03-14 15:13:06,529 - INFO - Jitter (ms): Avg=0.01
+2025-03-14 15:13:06,529 - INFO - Packet Loss (%): Avg=0.00
