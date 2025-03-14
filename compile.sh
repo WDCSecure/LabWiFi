@@ -47,6 +47,7 @@ compile_latex() {
 
     printf "\n${CYAN}Compiling $TEX_FILE ...${RESET}\n"
     pdflatex -output-directory="$OUTPUT_DIR" "$TEX_FILE"
+    # bibtex "$OUTPUT_DIR/$(basename "$TEX_FILE" .tex)"
     pdflatex -output-directory="$OUTPUT_DIR" "$TEX_FILE"
     pdflatex -output-directory="$OUTPUT_DIR" "$TEX_FILE"
 
