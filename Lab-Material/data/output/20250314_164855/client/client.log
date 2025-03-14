@@ -1,0 +1,26 @@
+2025-03-14 16:48:55,262 - INFO - Starting client tests (UDP=True, Bitrate=900M)...
+2025-03-14 16:48:55,262 - INFO - Test 1/10
+2025-03-14 16:49:05,314 - INFO - Test 1 Bandwidth: 667.63 Mbps
+2025-03-14 16:49:05,314 - INFO - Test 2/10
+2025-03-14 16:49:15,397 - INFO - Test 2 Bandwidth: 682.43 Mbps
+2025-03-14 16:49:15,397 - INFO - Test 3/10
+2025-03-14 16:49:25,455 - INFO - Test 3 Bandwidth: 628.80 Mbps
+2025-03-14 16:49:25,455 - INFO - Test 4/10
+2025-03-14 16:49:35,537 - INFO - Test 4 Bandwidth: 673.86 Mbps
+2025-03-14 16:49:35,537 - INFO - Test 5/10
+2025-03-14 16:49:35,553 - ERROR - Test 5 failed: Command '['iperf3', '-c', '192.168.1.13', '-J', '-t', '10', '-i', '1', '-u', '-b', '900M']' returned non-zero exit status 1.
+2025-03-14 16:49:35,553 - INFO - Test 6/10
+2025-03-14 16:49:45,612 - INFO - Test 6 Bandwidth: 739.92 Mbps
+2025-03-14 16:49:45,612 - INFO - Test 7/10
+2025-03-14 16:49:45,626 - ERROR - Test 7 failed: Command '['iperf3', '-c', '192.168.1.13', '-J', '-t', '10', '-i', '1', '-u', '-b', '900M']' returned non-zero exit status 1.
+2025-03-14 16:49:45,626 - INFO - Test 8/10
+2025-03-14 16:49:55,682 - INFO - Test 8 Bandwidth: 610.07 Mbps
+2025-03-14 16:49:55,682 - INFO - Test 9/10
+2025-03-14 16:50:05,739 - INFO - Test 9 Bandwidth: 810.99 Mbps
+2025-03-14 16:50:05,739 - INFO - Test 10/10
+2025-03-14 16:50:05,748 - ERROR - Test 10 failed: Command '['iperf3', '-c', '192.168.1.13', '-J', '-t', '10', '-i', '1', '-u', '-b', '900M']' returned non-zero exit status 1.
+2025-03-14 16:50:05,748 - INFO - 
+=== Statistics ===
+2025-03-14 16:50:05,748 - INFO - Bandwidth (Mbps): Min=610.07, Max=810.99, Avg=687.67, Std=68.37
+2025-03-14 16:50:05,749 - INFO - Jitter (ms): Avg=0.03
+2025-03-14 16:50:05,749 - INFO - Packet Loss (%): Avg=0.01
