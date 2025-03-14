@@ -1,0 +1,12 @@
+2025-03-14 13:38:12,901 - INFO - Starting client tests (UDP=False, Bitrate=10M)...
+2025-03-14 13:38:12,901 - INFO - Test 1/10
+2025-03-14 13:38:23,744 - INFO - Test 1 Bandwidth: 383.65 Mbps
+2025-03-14 13:38:23,744 - INFO - Test 2/10
+2025-03-14 13:38:33,840 - INFO - Test 2 Bandwidth: 406.68 Mbps
+2025-03-14 13:38:33,840 - INFO - Test 3/10
+2025-03-14 13:38:43,939 - INFO - Test 3 Bandwidth: 412.77 Mbps
+2025-03-14 13:38:43,940 - INFO - Test 4/10
+2025-03-14 13:38:54,026 - INFO - Test 4 Bandwidth: 397.93 Mbps
+2025-03-14 13:38:54,026 - INFO - Test 5/10
+2025-03-14 13:39:04,129 - INFO - Test 5 Bandwidth: 449.55 Mbps
+2025-03-14 13:39:04,129 - INFO - Test 6/10
