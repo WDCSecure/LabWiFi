@@ -38,9 +38,9 @@ The primary objectives of the lab were to:
 3. **Data Collection & Analysis:** Capture traffic using Wireshark.
 4. **Report Preparation:** Prepare a detailed lab report using LaTeX.
 
-For detailed instructions, please refer to the dedicated README files in the subdirectories:
-- [`Lab Material/README.md`](Lab-Material/README.md)
-- [`Report/README.md`](Report/README.md)
+For detailed instructions, please refer to the dedicated `README.md` files in the subdirectories:
+- [**`Lab-Material/README.md`**](Lab-Material/README.md)
+- [**`Report/README.md`**](Report/README.md)
 
 ## Authors
 
