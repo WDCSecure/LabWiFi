@@ -16,10 +16,12 @@ from datetime import datetime
 import logging
 import sys
 import os
+import threading
+import signal
 
 # Create output directory structure with timestamp
 session_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-base_output_dir = os.path.join("../data", "output", session_timestamp)
+base_output_dir = os.path.join("../data1", "output", session_timestamp)
 client_output_dir = os.path.join(base_output_dir, "client")
 server_output_dir = os.path.join(base_output_dir, "server")
 os.makedirs(client_output_dir, exist_ok=True)
@@ -42,29 +44,66 @@ def setup_logger(log_file, name):
     logger.addHandler(handler)
     return logger
 
-# Client Logger
 client_logger = setup_logger(CLIENT_LOG_FILE, "client")
-# Server Logger
 server_logger = setup_logger(SERVER_LOG_FILE, "server")
 
+
 def run_server():
-    """Run iperf3 server and log output."""
+    """Run iperf3 server with clean output handling."""
     server_logger.info("Starting iperf3 server...")
-    # Open JSON file in append mode to capture multiple test results
+    
+    def handler(signum, frame):
+        server_logger.info("Shutting down server...")
+        proc.terminate()
+        sys.exit(0)
+    
+    signal.signal(signal.SIGINT, handler)
+
     with open(JSON_LOG_SERVER, 'a') as f_json:
         proc = subprocess.Popen(
             ["iperf3", "-s", "-J"],
-            stdout=f_json,
+            stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-            text=True
+            text=True,
+            bufsize=1,
         )
-    server_logger.info(f"Server PID: {proc.pid}")
-    try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        server_logger.info("Stopping server...")
-        proc.terminate()
+        server_logger.info(f"Server PID: {proc.pid}")
+
+        def handle_stderr(stderr):
+            while True:
+                line = stderr.readline()
+                if not line: break
+                server_logger.error(line.strip())
+
+        stderr_thread = threading.Thread(target=handle_stderr, args=(proc.stderr,))
+        stderr_thread.daemon = True
+        stderr_thread.start()
+
+        try:
+            while True:
+                line = proc.stdout.readline()
+                if not line: 
+                    time.sleep(0.1)
+                    continue
+                
+                # Write raw JSON to file
+                f_json.write(line)
+                f_json.flush()
+                
+                # Parse and display clean output
+                try:
+                    data = json.loads(line)
+                    if 'start' in data:
+                        print(f"\n📡 Test started from {data['start']['connecting_to']['host']}")
+                    if 'end' in data:
+                        sum_sent = data['end']['sum_sent']
+                        sum_recv = data['end']['sum_received']
+                        print(f"✅ Test completed - Sent: {sum_sent['bits_per_second']/1e6:.2f} Mbps | Received: {sum_recv['bits_per_second']/1e6:.2f} Mbps")
+                except json.JSONDecodeError:
+                    pass
+
+        except KeyboardInterrupt:
+            handler(signal.SIGINT, None)
 
 def run_client(server_ip, udp=False, bitrate="1M", iterations=10):
     """Run iperf3 client tests and generate reports."""
@@ -88,38 +127,66 @@ def run_client(server_ip, udp=False, bitrate="1M", iterations=10):
                 check=True
             )
             
-            # Save the raw iperf3 output into a text file with separators
-            with open(RAW_OUTPUT_FILE, 'a') as f_raw:
-                f_raw.write(f"----------------------------------------\n")
-                f_raw.write(f"--- Test {i+1} Raw Output ---\n")
-                f_raw.write(result.stdout)
-                f_raw.write("\n----------------------------------------\n")
-            
+            # Print clean output to terminal
             data = json.loads(result.stdout)
-            # Append JSON data to the client JSON log
-            with open(JSON_LOG_CLIENT, 'a') as f:
-                json.dump(data, f)
-                f.write('\n')
+            print(f"\n🔁 Test {i+1}/{iterations}")
             
-            # Always include the target bitrate in the CSV (even though TCP ignores it)
-            test_data = {
-                "timestamp": datetime.now().isoformat(),
-                "protocol": "UDP" if udp else "TCP",
-                "bitrate": bitrate,
-                "statistic": "",  # Empty for regular test rows
-                "bandwidth": data['end']['sum']['bits_per_second'] / 1e6 if udp else data['end']['sum_sent']['bits_per_second'] / 1e6,
-                "jitter": data['end']['sum']['jitter_ms'] if udp else "",
-                "packet_loss": data['end']['sum']['lost_percent'] if udp else ""
-            }
+            if udp:
+                stats = data['end']['sum']
+                print(f"📤 Sent: {stats['bits_per_second']/1e6:.2f} Mbps")
+                print(f"📥 Received: {stats['bits_per_second']/1e6:.2f} Mbps")
+                print(f"📡 Jitter: {stats['jitter_ms']:.2f} ms")
+                print(f"🛑 Packet Loss: {stats['lost_percent']:.2f}%")
+                
+                test_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "protocol": "UDP",
+                    "bitrate": bitrate,
+                    "statistic": "",
+                    "bandwidth": stats['bits_per_second'] / 1e6,
+                    "jitter": stats['jitter_ms'],
+                    "packet_loss": stats['lost_percent']
+                }
+            else:
+                sent = data['end']['sum_sent']
+                received = data['end']['sum_received']
+                print(f"📤 Sent: {sent['bits_per_second']/1e6:.2f} Mbps")
+                print(f"📥 Received: {received['bits_per_second']/1e6:.2f} Mbps")
+                
+                test_data = {
+                    "timestamp": datetime.now().isoformat(),
+                    "protocol": "TCP",
+                    "bitrate": "",
+                    "statistic": "",
+                    "bandwidth": sent['bits_per_second'] / 1e6,
+                    "jitter": "",
+                    "packet_loss": ""
+                }
             
+            # Append to results list
             results.append(test_data)
+            
+            # Log raw data to files
+            with open(RAW_OUTPUT_FILE, 'a') as f_raw:
+                f_raw.write(f"\n--- Test {i+1} ---\n")
+                f_raw.write(result.stdout)
+                
+            with open(JSON_LOG_CLIENT, 'a') as f_json:
+                json.dump(data, f_json)
+                f_json.write('\n')
+            
             client_logger.info(f"Test {i+1} Bandwidth: {test_data['bandwidth']:.2f} Mbps")
-        
+
         except (subprocess.CalledProcessError, json.JSONDecodeError, KeyError) as e:
-            client_logger.error(f"Test {i+1} failed: {str(e)}")
-    
-    # Generate CSV Report with test results and summary statistics
+            error_msg = f"Test {i+1} failed: {str(e)}"
+            print(f"❌ {error_msg}")
+            client_logger.error(error_msg)
+            continue  # Skip to next iteration
+
+    # Generate CSV report only if we have results
     if results:
+        # [Keep existing CSV generation code]
+        # Generate CSV Report with test results and summary statistics
         with open(CSV_REPORT, 'w', newline='') as csvfile:
             fieldnames = ["timestamp", "protocol", "bitrate", "statistic", "bandwidth", "jitter", "packet_loss"]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -146,7 +213,7 @@ def run_client(server_ip, udp=False, bitrate="1M", iterations=10):
             summary_base = {
                 "timestamp": "Summary",
                 "protocol": "UDP" if udp else "TCP",
-                "bitrate": bitrate
+                "bitrate": bitrate if udp else ""
             }
             writer.writerow({**summary_base, "statistic": "min", "bandwidth": stats["min"]})
             writer.writerow({**summary_base, "statistic": "max", "bandwidth": stats["max"]})
@@ -156,11 +223,16 @@ def run_client(server_ip, udp=False, bitrate="1M", iterations=10):
             writer.writerow(avg_row)
             writer.writerow({**summary_base, "statistic": "std", "bandwidth": stats["std"]})
         
-        client_logger.info("\n=== Statistics ===")
-        client_logger.info(f"Bandwidth (Mbps): Min={stats['min']:.2f}, Max={stats['max']:.2f}, Avg={stats['avg']:.2f}, Std={stats['std']:.2f}")
+        # Print final summary to terminal
+        print("\n📊 Final Summary:")
+        print(f"  Bandwidth (Mbps): Min={stats['min']:.2f}, Max={stats['max']:.2f}, Avg={stats['avg']:.2f}, Std={stats['std']:.2f}")
         if udp:
-            client_logger.info(f"Jitter (ms): Avg={stats['avg_jitter']:.2f}")
-            client_logger.info(f"Packet Loss (%): Avg={stats['avg_loss']:.2f}")
+            print(f"  Jitter (ms): Avg={stats['avg_jitter']:.2f}")
+            print(f"  Packet Loss (%): Avg={stats['avg_loss']:.2f}")
+    else:
+        print("⚠️  No successful tests to report")
+
+
 
 def main():
     parser = argparse.ArgumentParser(description="Network Goodput Measurement Tool")
