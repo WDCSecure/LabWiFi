@@ -7,6 +7,7 @@ This directory contains the LaTeX source files for the Lab WiFi Report for the *
 The directory is organized as follows:
 
 - `sections/`: contains separate LaTeX files for each section of the report.
+- `appendix/`: contains supplementary material and additional information.
 - `images/`: stores all images and diagrams included in the report.
 - `bibliography/`: holds references and bibliography files.
 - `template/`: holds the LaTeX template files.
