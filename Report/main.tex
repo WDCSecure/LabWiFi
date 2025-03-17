@@ -61,6 +61,10 @@
 % \usepackage{amsfonts}
 \usepackage{latexsym,fancyhdr,url}
 
+\newcommand{\cooltext}[1]{%
+  \texttt{\colorbox{gray!15}{\textcolor{black}{#1}}}%
+}
+
 % ----------------------------------------
 % Packages for Lists, Algorithms, and Parsing
 % ----------------------------------------
@@ -74,6 +78,7 @@
 \usepackage{csvsimple}
 \usepackage{balance}
 \usepackage{listings}
+\usepackage{enumitem}
 % Uncomment the following line if you need to balance columns in two-column mode.
 % \usepackage{flushend}
 
@@ -97,6 +102,14 @@
     abovecaptionskip=5pt,               % Adjusts the space above the caption to 5pt
     belowcaptionskip=8pt,               % Adjusts the space below the caption to 8pt
 }
+
+% Configure bullet points with customized size
+\setlist[itemize,1]{label={\Large\textbullet}, leftmargin=1em} % First level: larger bullet point
+\setlist[itemize,2]{label={\Large\textbullet}, leftmargin=1em} % Second level: larger bullet point and indented by 1em
+
+% Configure enumerate lists with customized size
+\setlist[enumerate,1]{label=\arabic*., leftmargin=1.5em} % First level: indented by 1em
+\setlist[enumerate,2]{label=\arabic*., leftmargin=1em} % Second level: indented by 1em
 
 % ----------------------------------------
 % Optional Font Packages
