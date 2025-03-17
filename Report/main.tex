@@ -73,8 +73,30 @@
 \usepackage{multirow}
 \usepackage{csvsimple}
 \usepackage{balance}
+\usepackage{listings}
 % Uncomment the following line if you need to balance columns in two-column mode.
 % \usepackage{flushend}
+
+% Custom settings for listings
+\lstset{
+    language=Python,                    % Sets the programming language for syntax highlighting
+    basicstyle=\footnotesize\ttfamily,  % Sets the font style and size for the code
+    keywordstyle=\color{blue},          % Style applied to keywords (e.g., "def", "import")
+    commentstyle=\color{gray},          % Style applied to comments (e.g., lines starting with "#")
+    stringstyle=\color{red},            % Style applied to strings (e.g., text within quotes)
+    % backgroundcolor=\color{gray!10},  % Background color for the code block (light gray in this case)
+    % numbers=left,                     % Displays line numbers on the left side of the code block
+    % numberstyle=\tiny,                % Font size/style for line numbers
+    % stepnumber=1,                     % Line number increment (e.g., every 1 line gets a number)
+    % numbersep=5pt,                    % Distance between the line numbers and the code
+    linewidth=0.95\linewidth,           % Code block occupies 80% of text width
+    xleftmargin=-20pt,                  % Moves the listing 20pt closer to the left margin
+    xrightmargin=5pt,                   % Optional: Adds extra padding on the right
+    breaklines=true,                    % Automatically breaks long lines to fit within the page width
+    captionpos=b,                       % Places the caption below the code block
+    abovecaptionskip=5pt,               % Adjusts the space above the caption to 5pt
+    belowcaptionskip=8pt,               % Adjusts the space below the caption to 8pt
+}
 
 % ----------------------------------------
 % Optional Font Packages

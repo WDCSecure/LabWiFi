@@ -11,26 +11,24 @@ In this section, we describe the hardware and software configuration used to per
 \begin{table}[ht]
     \small
     \centering
-    \caption{Summary of Hardware and Network Configuration}
-    \label{tab:equipment-summary}
     \begin{tabular}{@{}l p{0.78\columnwidth}@{}}
     \toprule
     \textbf{Device} & \textbf{Key Specifications} \\
     \midrule
     \textbf{PC1} 
-        & Victus 16-s1005nl Notebook \newline
+        & \textbf{Victus 16-s1005nl Notebook} \newline
           \textit{Operating System:} Ubuntu 24.04.2~LTS \newline
           \textit{Ethernet Interface:} Realtek RTL8111/8168/8211/8411 \newline
           \textit{Wireless Interface:} Realtek RTL8852BE (802.11ax) \\
     \midrule
     \textbf{PC2} 
-        & Microsoft Surface Laptop Go~3 \newline
+        & \textbf{Microsoft Surface Laptop Go~3} \newline
           \textit{Operating System:} Ubuntu 24.10 \newline
           \textit{Ethernet Interface:} via Anker PowerExpand+ USB-C Hub \newline
           \textit{Wireless Interface:} Intel Alder Lake-P CNVi (802.11ax) \\
     \midrule
     \textbf{Router} 
-        & Vodafone Power Station Wi-Fi~6 \newline
+        & \textbf{Vodafone Power Station Wi-Fi~6} \newline
           \textit{Ethernet Ports:} 4 $\times$ 1\,GbE ports \newline
           \textit{Wi-Fi:} Dual-band 802.11ax (2.4\,GHz / 5\,GHz) \\
     \midrule
@@ -38,7 +36,12 @@ In this section, we describe the hardware and software configuration used to per
         & CAT.5E (up to 1\,Gbps) \\
     \bottomrule
     \end{tabular}
+    \vspace{0.5cm}
+    \caption{Summary of Hardware and Network Configuration}
+    \label{tab:equipment-summary}
 \end{table}
+
+\vspace{-0.1cm} % TODO: check
 
 This hardware setup allows us to compare Ethernet versus Wi-Fi performance under a consistent router and cabling environment. In the next section, we detail the evaluation scenarios and the measurement methodology.
 
@@ -63,6 +66,8 @@ We considered three distinct network configurations to assess the performance di
     G_{UDP}^{Eth} \leq 0.957 \times 1000\,\text{Mbps} \approx 957\,\text{Mbps}.
     \]
 
+    \vspace{0.2cm} % TODO: check
+
     \item \textbf{Both Wi-Fi:} \\
     For this configuration, both devices use their wireless interfaces (802.11ax) to connect to the router. Although the nominal Wi-Fi link speed is assumed to be approximately 867\,Mbps, the half-duplex nature of Wi-Fi effectively halves the throughput available for data transfer. Assuming a Wi-Fi efficiency factor of about 80\%, the expected goodput for TCP is:
     \[
@@ -72,6 +77,8 @@ We considered three distinct network configurations to assess the performance di
     \[
     G_{UDP}^{WiFi} \leq 0.806 \times 867\,\text{Mbps} \times \frac{1}{2} \approx 350\,\text{Mbps}.
     \]
+
+    % \vspace{0.1cm}
 
     \item \textbf{Mixed Scenario:} \\
     In this configuration, one device (PC1) is connected via Ethernet while the other (PC2) uses its Wi-Fi interface. Here, the bottleneck is the Wi-Fi link; however, since only one device is utilizing Wi-Fi, the throughput is not halved. The expected goodput is then:

@@ -1,4 +1,4 @@
-# Lab WiFi Report for the WD2DCS course
+# Lab WiFi for the WD2DCS course
 
 ![Polito Logo](resources/logo_polito.jpg)
 
