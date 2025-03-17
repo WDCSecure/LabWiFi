@@ -45,10 +45,15 @@ Thus, the efficiency for TCP over Ethernet is approximately:
 \[
 \eta_{TCP}^{Eth} \approx \frac{1460}{1460 + 20 + 20 + 38} \approx 94.9\%.
 \]
-Similarly, for UDP the efficiency is given by:
+Similarly, the efficiency for UDP is computed as follows. Since UDP has an 8-byte header, its MSS is given by:
+\begin{itemize}
+    \item MSS \(\approx\) 1472 bytes (after subtracting 20 bytes for the IP header and 8 bytes for the UDP header).
+\end{itemize}
+Thus, the efficiency for UDP over Ethernet is given by:
 \[
 \eta_{UDP}^{Eth} \approx \frac{1472}{1472 + 20 + 8 + 38} \approx 95.7\%.
 \]
+
 
 For WiFi, additional factors must be considered due to its half-duplex nature and the inherent overhead of the 802.11 protocol (e.g., control frames, retransmissions, and channel contention). Consequently, the effective efficiency is reduced by a WiFi-specific factor (\(\eta_{WiFi}\)). The adjusted efficiency for TCP over WiFi can be expressed as:
 \[
