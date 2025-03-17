@@ -1,0 +1,21 @@
+2025-03-17 14:55:30,082 - INFO - Starting client tests (UDP=False, Bitrate=750M)...
+2025-03-17 14:55:30,082 - INFO - Test 1/10
+2025-03-17 14:55:40,160 - INFO - Test 1 Bandwidth: 722.25 Mbps
+2025-03-17 14:55:40,160 - INFO - Test 2/10
+2025-03-17 14:55:50,229 - INFO - Test 2 Bandwidth: 686.74 Mbps
+2025-03-17 14:55:50,229 - INFO - Test 3/10
+2025-03-17 14:56:00,331 - INFO - Test 3 Bandwidth: 575.30 Mbps
+2025-03-17 14:56:00,331 - INFO - Test 4/10
+2025-03-17 14:56:10,505 - INFO - Test 4 Bandwidth: 446.40 Mbps
+2025-03-17 14:56:10,505 - INFO - Test 5/10
+2025-03-17 14:56:20,673 - INFO - Test 5 Bandwidth: 440.53 Mbps
+2025-03-17 14:56:20,673 - INFO - Test 6/10
+2025-03-17 14:56:20,713 - ERROR - Test 6 failed: Command '['iperf3', '-c', '192.168.1.13', '-J', '-t', '10', '-i', '1']' returned non-zero exit status 1.
+2025-03-17 14:56:20,713 - INFO - Test 7/10
+2025-03-17 14:56:30,872 - INFO - Test 7 Bandwidth: 457.97 Mbps
+2025-03-17 14:56:30,872 - INFO - Test 8/10
+2025-03-17 14:56:41,017 - INFO - Test 8 Bandwidth: 483.76 Mbps
+2025-03-17 14:56:41,017 - INFO - Test 9/10
+2025-03-17 14:56:41,055 - ERROR - Test 9 failed: Command '['iperf3', '-c', '192.168.1.13', '-J', '-t', '10', '-i', '1']' returned non-zero exit status 1.
+2025-03-17 14:56:41,055 - INFO - Test 10/10
+2025-03-17 14:56:51,212 - INFO - Test 10 Bandwidth: 482.04 Mbps
