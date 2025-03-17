@@ -4,101 +4,96 @@
 % Section Title
 \section{EXPERIMENTAL SETUP AND TEST CASES} \label{sec:experimental-setup-and-test-cases}
 
-    % Main Content
+\subsection{Equipment and Configuration} \label{subsec:equipment-and-configuration}
 
-    \ldots
+In this section, we describe the hardware and software configuration used to perform our network performance measurements. Table~\ref{tab:equipment-summary} summarizes the main devices, their interfaces, and relevant specifications. 
 
-    \subsection{Equipment and Configuration} \label{subsec:equipment-and-configuration}
+\begin{table}[ht]
+    \small
+    \centering
+    \caption{Summary of Hardware and Network Configuration}
+    \label{tab:equipment-summary}
+    \begin{tabular}{@{}l p{0.78\columnwidth}@{}}
+    \toprule
+    \textbf{Device} & \textbf{Key Specifications} \\
+    \midrule
+    \textbf{PC1} 
+        & Victus 16-s1005nl Notebook \newline
+          \textit{Operating System:} Ubuntu 24.04.2~LTS \newline
+          \textit{Ethernet Interface:} Realtek RTL8111/8168/8211/8411 \newline
+          \textit{Wireless Interface:} Realtek RTL8852BE (802.11ax) \\
+    \midrule
+    \textbf{PC2} 
+        & Microsoft Surface Laptop Go~3 \newline
+          \textit{Operating System:} Ubuntu 24.10 \newline
+          \textit{Ethernet Interface:} via Anker PowerExpand+ USB-C Hub \newline
+          \textit{Wireless Interface:} Intel Alder Lake-P CNVi (802.11ax) \\
+    \midrule
+    \textbf{Router} 
+        & Vodafone Power Station Wi-Fi~6 \newline
+          \textit{Ethernet Ports:} 4 $\times$ 1\,GbE ports \newline
+          \textit{Wi-Fi:} Dual-band 802.11ax (2.4\,GHz / 5\,GHz) \\
+    \midrule
+    \textbf{Cables} 
+        & CAT.5E (up to 1\,Gbps) \\
+    \bottomrule
+    \end{tabular}
+\end{table}
 
-        In this section, we describe the hardware and software configuration used to perform our network performance measurements. Table~\ref{tab:equipment-summary} summarizes the main devices, their interfaces, and relevant specifications. 
+This hardware setup allows us to compare Ethernet versus Wi-Fi performance under a consistent router and cabling environment. In the next section, we detail the evaluation scenarios and the measurement methodology.
 
-        \begin{table}[ht]
-            \small
-            \centering
-            \caption{Summary of Hardware and Network Configuration}
-            \label{tab:equipment-summary}
-            \begin{tabular}{@{}l p{0.78\columnwidth}@{}}
-            \toprule
-            \textbf{Device} & \textbf{Key Specifications} \\
-            \midrule
-            \textbf{PC1} 
-                & Victus 16-s1005nl Notebook \newline
-                  \textit{Operating System:} Ubuntu 24.04.2~LTS \newline
-                  \textit{Ethernet Interface:} Realtek RTL8111/8168/8211/8411 \newline
-                  \textit{Wireless Interface:} Realtek RTL8852BE (802.11ax) \\
-            \midrule
-            \textbf{PC2} 
-                & Microsoft Surface Laptop Go~3 \newline
-                  \textit{Operating System:} Ubuntu 24.10 \newline
-                  \textit{Ethernet Interface:} via Anker PowerExpand+ USB-C Hub \newline
-                  \textit{Wireless Interface:} Intel Alder Lake-P CNVi (802.11ax) \\
-            \midrule
-            \textbf{Router} 
-                & Vodafone Power Station Wi-Fi~6 \newline
-                  \textit{Ethernet Ports:} 4 $\times$ 1\,GbE ports \newline
-                  \textit{Wi-Fi:} Dual-band 802.11ax (2.4\,GHz / 5\,GHz) \\
-            \midrule
-            \textbf{Cables} 
-                & CAT.5E (up to 1\,Gbps) \\
-            \bottomrule
-            \end{tabular}
-        \end{table}
+\subsection{Evaluation Scenarios} \label{subsec:evaluation-scenarios}
 
-        % \noindent
-        % \textbf{PC1 (Victus 16-s1005nl).}
-        % This notebook runs Ubuntu 24.04.2~LTS (codename \texttt{noble}). 
-        % Its onboard Ethernet adapter is a Realtek \\ RTL8111/8168/8211/8411 controller, 
-        % supporting up to 1\,Gbps. 
-        % Wireless connectivity is provided by a Realtek RTL8852BE PCIe 802.11ax card.
+We considered three distinct network configurations to assess the performance differences between wired and wireless communications. For each scenario, the theoretical goodput is computed based on the nominal link capacity and protocol efficiency.
 
-        % This notebook runs Ubuntu~24.04.2\,LTS and has a Realtek RTL8111/8168/8211/8411 Gigabit Ethernet controller. Its wireless interface is a Realtek RTL8852BE PCIe 802.11ax card.
+\begin{enumerate}
+    \item \textbf{Both Ethernet:} \\
+    In this scenario, both PC1 and PC2 are connected to the router via CAT.5E cables, providing a nominal link capacity of 1\,Gbps. The efficiency for Ethernet is calculated as follows:
+    \[
+    \eta_{TCP}^{Eth} \approx \frac{1460}{1460 + 20 + 20 + 38} \approx 94.9\%,
+    \]
+    \[
+    \eta_{UDP}^{Eth} \approx \frac{1472}{1472 + 20 + 8 + 38} \approx 95.7\%.
+    \]
+    Thus, the expected goodput is:
+    \[
+    G_{TCP}^{Eth} \leq 0.949 \times 1000\,\text{Mbps} \approx 949\,\text{Mbps},
+    \]
+    \[
+    G_{UDP}^{Eth} \leq 0.957 \times 1000\,\text{Mbps} \approx 957\,\text{Mbps}.
+    \]
 
-        % \medskip
-        % \noindent
-        % \textbf{PC2 (Surface Laptop Go~3).}
-        % This device also runs Ubuntu, version 24.10 (codename \texttt{oracular}). 
-        % It lacks a built-in Ethernet port, so a USB-C hub (ANKER PowerExpand+ 7-in-1) 
-        % is used to provide a Gigabit Ethernet interface. 
-        % For wireless, it has an Intel Alder Lake-P PCH CNVi card (802.11ax).
+    \item \textbf{Both Wi-Fi:} \\
+    For this configuration, both devices use their wireless interfaces (802.11ax) to connect to the router. Although the nominal Wi-Fi link speed is assumed to be approximately 867\,Mbps, the half-duplex nature of Wi-Fi effectively halves the throughput available for data transfer. Assuming a Wi-Fi efficiency factor of about 80\%, the expected goodput for TCP is:
+    \[
+    G_{TCP}^{WiFi} \leq 0.80 \times 867\,\text{Mbps} \times \frac{1}{2} \approx 347\,\text{Mbps},
+    \]
+    and similarly for UDP:
+    \[
+    G_{UDP}^{WiFi} \leq 0.806 \times 867\,\text{Mbps} \times \frac{1}{2} \approx 350\,\text{Mbps}.
+    \]
 
-        % This device runs Ubuntu~24.10. It does not include a built-in Ethernet port, so a USB-C Anker PowerExpand+ hub is used to provide a Gigabit Ethernet interface. For wireless, it is equipped with an Intel Alder Lake-P CNVi Wi-Fi 6 adapter.
+    \item \textbf{Mixed Scenario:} \\
+    In this configuration, one device (PC1) is connected via Ethernet while the other (PC2) uses its Wi-Fi interface. Here, the bottleneck is the Wi-Fi link; however, since only one device is utilizing Wi-Fi, the throughput is not halved. The expected goodput is then:
+    \[
+    G_{TCP}^{Mixed} \leq 0.80 \times 867\,\text{Mbps} \approx 694\,\text{Mbps},
+    \]
+    \[
+    G_{UDP}^{Mixed} \leq 0.806 \times 867\,\text{Mbps} \approx 698\,\text{Mbps}.
+    \]
+\end{enumerate}
 
-        % \medskip
-        % \noindent
-        % \textbf{Router (Vodafone Power Station Wi-Fi~6).}
-        % All test traffic traverses a Vodafone Power Station Wi-Fi~6 router, 
-        % which provides four Gigabit Ethernet ports and dual-band Wi-Fi~6 
-        % (2.4\,GHz and 5\,GHz). 
-        % In all wired scenarios, we connect via the router’s 1\,GbE ports 
-        % using Category~5e cables.
+These calculations provide the theoretical upper bounds for goodput in each scenario. The experimental results, obtained via automated measurements using the provided Python script, are compared against these predictions to evaluate real-world performance.
 
-        % All test traffic traverses a Vodafone Power Station Wi-Fi~6 router, which provides four 1\,GbE ports and dual-band 802.11ax wireless connectivity.
+\medskip
 
-        % \medskip
-        % \noindent
-        % \textbf{Cables (CAT.5E).}
-        % We use CAT.5E cables for all wired experiments, supporting 
-        % up to 1\,Gbps throughput. 
-
-        % We use Category~5E cables (rated for up to 1\,Gbps) for all wired experiments. 
-
-        % \medskip
-        This hardware setup allows us to compare Ethernet versus Wi-Fi performance 
-        under a consistent router and cabling environment. 
-        In the next section, we detail the evaluation scenarios and 
-        the measurement methodology.
-
-        % This setup allows for direct comparison of wired (Ethernet) versus wireless (Wi-Fi~6) performance under the same routing and cabling conditions. The next subsection details the test scenarios and configurations used in our experiments.
-
-    \subsection{Evaluation Scenarios} \label{subsec:evaluation-scenarios}
-
-        \ldots
-
-        \begin{figure}[ht]
-            \centering
-            \includegraphics[width=0.8\columnwidth]{../images/test_cases_white.png}
-            \caption{Test cases setup for the experiments.}
-            \label{fig:test-cases}
-        \end{figure}
-
-        \ldots
+\textbf{Note on Experimental Automation:} \\
+The experimental process was automated using a custom Python script. This script manages both the server and client modes of iperf3 and handles output logging in JSON, CSV, and plain text formats. Key command-line flags include:
+\begin{itemize}
+    \item \texttt{--server}: Runs the iperf3 server in JSON output mode.
+    \item \texttt{<SERVER\_IP>}: Specifies the server's IP address for client mode.
+    \item \texttt{--udp}: Switches the test from TCP to UDP.
+    \item \texttt{--bitrate}: Sets the target bitrate for UDP tests (e.g., \texttt{10M}).
+    \item \texttt{--iter}: Specifies the number of test iterations.
+\end{itemize}
+The output files generated by the script serve as the basis for our statistical analysis and subsequent comparison with the theoretical predictions.
