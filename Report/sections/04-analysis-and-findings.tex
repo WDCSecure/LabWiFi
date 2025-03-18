@@ -7,7 +7,7 @@
 
         The performance tests using TCP reveal several noteworthy trends. The analysis for TCP performance in different scenarios is organized as follows:
 
-        \begin{table}
+        \begin{table}[H]
             \small
             \centering
             \begin{tabular}{|ll|lllll|}
@@ -157,12 +157,12 @@
                 Compared to the mixed scenario without interference, the throughput exhibits a notable decrease. 
                 The average throughput is lower, reflecting the reduced available bandwidth caused by the competing download traffic.
 
-                \begin{figure}[ht]
-                    \centering
-                    \includegraphics[width=0.9\columnwidth]{images/graphs/Throughput/Throughput_MIX_MITM_TCP.pdf}
-                    \caption{TCP Throughput in the Shared Capacity Scenario (with third-host interference).}
-                    \label{fig:throughput-mitm-tcp}
-                \end{figure}
+                % \begin{figure}[ht]
+                %     \centering
+                %     \includegraphics[width=0.9\columnwidth]{images/graphs/Throughput/Throughput_MIX_MITM_TCP.pdf}
+                %     \caption{TCP Throughput in the Shared Capacity Scenario (with third-host interference).}
+                %     \label{fig:throughput-mitm-tcp}
+                % \end{figure}
 
                 The round-trip time measurements (Fig.~\ref{fig:rtt-mitm-tcp}) indicate increased variability and slightly elevated latency. 
                 Although the RTT values remain relatively moderate, the fluctuations suggest that the network experiences occasional congestion and delays as a result of the third host's activity.
@@ -190,7 +190,7 @@
 
         The UDP tests offer an insightful comparison to the TCP results by eliminating congestion control and acknowledgment overhead. The analysis for UDP performance across different scenarios is structured as follows:
 
-        \begin{table}
+        \begin{table}[H]
             \small
             \centering
             \begin{tabular}{|ll|lllll|}
