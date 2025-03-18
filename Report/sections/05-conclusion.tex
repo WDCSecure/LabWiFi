@@ -4,10 +4,17 @@
 % Section Title
 \section{CONCLUSION} \label{sec:conclusion}
 
-In this project, we evaluated the performance of network communication under various scenarios using both wired (Ethernet) and wireless (WiFi) connections. Our experimental results, obtained through automated measurements with iperf3 and detailed packet analysis with Wireshark, were compared against theoretical predictions of goodput for both TCP and UDP protocols.
+    In this project, we evaluated the performance of network communication under various scenarios using both wired (Ethernet) and wireless (WiFi) connections. 
+    Our experimental results, obtained through automated measurements with iperf3 and detailed packet analysis with Wireshark, were compared against theoretical predictions of goodput for both TCP and UDP protocols.
 
-Overall, the Ethernet scenario demonstrated near-ideal performance, with throughput and latency closely matching the theoretical values. This confirms that a controlled wired environment can efficiently utilize available bandwidth with minimal interference. In contrast, the WiFi scenario showed a significant performance drop, with fluctuations in throughput and increased latency due to the inherent limitations of wireless communication such as interference, contention, and the half-duplex nature of WiFi.
+    Overall, the Ethernet scenario demonstrated near-ideal performance, with throughput and latency closely matching the theoretical values. 
+    This confirms that a controlled wired environment can efficiently utilize available bandwidth with minimal interference. 
+    In contrast, the WiFi scenario showed a significant performance drop, with fluctuations in throughput and increased latency due to the inherent limitations of wireless communication such as interference, contention, and the half-duplex nature of WiFi.
 
-The mixed scenario, where one device is connected via Ethernet and the other via WiFi, presented an intermediate case. Here, while the wired segment helped in reducing latency and stabilizing performance, the overall throughput remained limited by the wireless link. Finally, the shared capacity scenario—where an additional host engaged in heavy traffic (streaming a movie)—further degraded performance for both TCP and UDP tests. This clearly highlights the impact of network congestion and shared medium contention on real-world performance.
+    The mixed scenario, where one device is connected via Ethernet and the other via WiFi, presented an intermediate case. 
+    Here, while the wired segment helped in reducing latency and stabilizing performance, the overall throughput remained limited by the wireless link. 
+    Finally, the shared capacity scenario—where an additional host engaged in heavy traffic (streaming a movie)—further degraded performance for both TCP and UDP tests. 
+    This clearly highlights the impact of network congestion and shared medium contention on real-world performance.
 
-These findings emphasize the importance of considering environmental and traffic-related factors when designing and optimizing network infrastructures. While theoretical models provide useful upper bounds, actual network performance is influenced by a range of practical factors that must be taken into account for effective network planning and troubleshooting.
+    These findings emphasize the importance of considering environmental and traffic-related factors when designing and optimizing network infrastructures. 
+    While theoretical models provide useful upper bounds, actual network performance is influenced by a range of practical factors that must be taken into account for effective network planning and troubleshooting.
