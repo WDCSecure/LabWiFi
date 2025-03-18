@@ -32,7 +32,7 @@
 % The following defines the \BibTeX command in a specific style based on Oren Patashnik's original documentation.
 % Uncomment these lines if you want to use this custom formatting for \BibTeX.
 % defining the \BibTeX command - from Oren Patashnik's original BibTeX documentation.
-% \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08emT\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08emT\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     
 % ----------------------------------------
 % Packages for Numbers, Units, and Tables
@@ -230,8 +230,10 @@
 % ---------------------------
 \author{Andrea Botticella}
 \authornote{
-  The authors collaborated closely in developing this project. \\
-  All the authors are affiliated with Politecnico di Torino, Turin, Italy.
+  The authors collaborated closely in developing this project.
+}
+\authornote{
+  All the authors are students at Politecnico di Torino, Turin, Italy.
 }
 \email{andrea.botticella@studenti.polito.it}
 \affiliation{%
@@ -242,6 +244,7 @@
 
 \author{Elia Innocenti}
 \authornotemark[1]
+\authornotemark[2]
 \email{elia.innocenti@studenti.polito.it}
 \affiliation{%
   % \institution{Politecnico di Torino}
@@ -251,6 +254,7 @@
 
 \author{Renato Mignone}
 \authornotemark[1]
+\authornotemark[2]
 \email{renato.mignone@studenti.polito.it}
 \affiliation{%
   % \institution{Politecnico di Torino}
@@ -260,6 +264,7 @@
 
 \author{Simone Romano}
 \authornotemark[1]
+\authornotemark[2]
 \email{simone.romano2@studenti.polito.it}
 \affiliation{%
   % \institution{Politecnico di Torino}
@@ -300,7 +305,6 @@
 % ----------------------------------------
 % Appendix
 % ----------------------------------------
-
 \clearpage
 \newpage % TODO: check
 \appendix
@@ -309,8 +313,9 @@
 % ----------------------------------------
 % Bibliography
 % ----------------------------------------
-%\bibliographystyle{template/ACM-Reference-Format}
-%\bibliography{bibliography/references}
+\nocite{*} % Include all references from the .bib file % TODO: check
+\bibliographystyle{template/ACM-Reference-Format}
+\bibliography{bibliography/references}
 
 \end{document}
 

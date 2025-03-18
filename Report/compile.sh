@@ -21,7 +21,6 @@ remove_root_pdf() {
     printf "\n${GREEN}Removed ${CUSTOM_PDF_NAME} from root directory.${RESET}\n"
 }
 
-
 # Function to clean the output directory
 clean_output() {
     if [ -d "$OUTPUT_DIR" ]; then
@@ -38,6 +37,7 @@ compile_latex() {
     local TEX_FILE=$1
     local CUSTOM_NAME=$2
     local OUTPUT_PDF=$3
+    local COMPILE_BIB=$4
     
     # Ensure the output directory exists
     if [ ! -d "$OUTPUT_DIR" ]; then
@@ -47,8 +47,13 @@ compile_latex() {
 
     printf "\n${CYAN}Compiling $TEX_FILE ...${RESET}\n"
     pdflatex -output-directory="$OUTPUT_DIR" "$TEX_FILE"
-    # bibtex "$OUTPUT_DIR/$(basename "$TEX_FILE" .tex)"
-    pdflatex -output-directory="$OUTPUT_DIR" "$TEX_FILE"
+
+    if [ "$COMPILE_BIB" = true ]; then
+        bibtex "$OUTPUT_DIR/$(basename "$TEX_FILE" .tex)"
+        pdflatex -output-directory="$OUTPUT_DIR" "$TEX_FILE"
+        pdflatex -output-directory="$OUTPUT_DIR" "$TEX_FILE"
+    fi
+
     pdflatex -output-directory="$OUTPUT_DIR" "$TEX_FILE"
 
     if [ -f "$OUTPUT_DIR/$OUTPUT_PDF" ]; then
@@ -65,9 +70,9 @@ case "$1" in
         clean_output
         ;;
     main)
-        compile_latex "main.tex" "$CUSTOM_PDF_NAME" "$PDF_FILE"
+        compile_latex "main.tex" "$CUSTOM_PDF_NAME" "$PDF_FILE" false
         ;;
     *)
-        compile_latex "main.tex" "$CUSTOM_PDF_NAME" "$PDF_FILE"
+        compile_latex "main.tex" "$CUSTOM_PDF_NAME" "$PDF_FILE" true
         ;;
 esac

@@ -30,11 +30,17 @@ chmod +x compile.sh
 
 The `compile.sh` script provides the following functionalities:
 
-- **Compile the main report**:
+- **Compile the main report with bibliography**:
   ```bash
   ./compile.sh
   ```
-  This compiles the `main.tex`, generating the PDF for the report in the `out` directory.
+  This compiles the `main.tex` along with the bibliography, generating the PDF for the report in the `out` directory.
+
+- **Compile the main report without bibliography**:
+  ```bash
+  ./compile.sh main
+  ```
+  This compiles the `main.tex` without the bibliography, generating the PDF for the report in the `out` directory.
 
 - **Clean the output directory**:
   ```bash
