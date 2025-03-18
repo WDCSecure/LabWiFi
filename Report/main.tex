@@ -6,7 +6,8 @@
 % ----------------------------------------
 % Document Class and Top Matter Settings
 % ----------------------------------------
-\documentclass[sigconf, review]{template/acmart}
+% \documentclass[sigconf, review]{template/acmart}
+\documentclass[sigconf]{template/acmart}
 
 % Remove ACM-specific references and permissions
 \setcopyright{none} % Disable copyright
@@ -114,7 +115,7 @@
 
 % Configure enumerate lists with customized size
 \setlist[enumerate,1]{label=\arabic*., leftmargin=1.5em} % First level: indented by 1em
-\setlist[enumerate,2]{label=\arabic*., leftmargin=1em} % Second level: indented by 1em
+\setlist[enumerate,2]{label=\arabic*., leftmargin=1em}   % Second level: indented by 1em
 
 % ----------------------------------------
 % Optional Font Packages
@@ -151,6 +152,10 @@
 % Uncomment these lines to set page numbering and page style if desired.
 % \pagenumbering{arabic}
 % \pagestyle{plain}
+
+% Trying to force the review numbering
+\usepackage[switch]{lineno} % TODO: check
+\renewcommand\linenumberfont{\normalfont\small\color{red}}
 
 % ----------------------------------------
 % Math Packages and Definitions
@@ -261,7 +266,7 @@
 % Short author list for page headers
 \renewcommand{\shortauthors}{Botticella, Innocenti, Mignone, and Romano}
 
-\date{March 18, 2025} % TODO: change the date
+\date{}
 
 % ---------------------------
 % Abstract Section
@@ -270,6 +275,9 @@
 
 % Create the title block
 \maketitle
+
+% Add line numbers for review
+\linenumbers
 
 % ---------------------------
 % Document Keywords
@@ -288,6 +296,7 @@
 % ----------------------------------------
 % Appendix
 % ----------------------------------------
+\newpage % TODO: check
 \appendix
 \input{appendix/A-appendix}
 

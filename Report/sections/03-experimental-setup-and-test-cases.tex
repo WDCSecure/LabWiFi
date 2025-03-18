@@ -20,20 +20,20 @@
             \midrule
             \textbf{PC1} 
                 & \textbf{Victus 16-s1005nl Notebook} \newline
-                \textit{Operating System:} Ubuntu 24.04.2~LTS \newline
+                \textit{Operating System:}   Ubuntu 24.04.2~LTS \newline
                 \textit{Ethernet Interface:} Realtek RTL8111/8168/8211/8411 \newline
-                \textit{Wireless Interface:} Realtek RTL8852BE (802.11ax) \\
+                \textit{Wireless Interface:} Realtek RTL8852BE (802.11ax) | 2x2 \\
             \midrule
             \textbf{PC2} 
                 & \textbf{Microsoft Surface Laptop Go~3} \newline
-                \textit{Operating System:} Ubuntu 24.10 \newline
+                \textit{Operating System:}   Ubuntu 24.10 \newline
                 \textit{Ethernet Interface:} via Anker PowerExpand+ USB-C Hub \newline
-                \textit{Wireless Interface:} Intel Alder Lake-P CNVi (802.11ax) \\
+                \textit{Wireless Interface:} Intel Alder Lake-P CNVi (802.11ax) | 2x2 \\
             \midrule
             \textbf{Router} 
                 & \textbf{Vodafone Power Station Wi-Fi~6} \newline
-                \textit{Ethernet Ports:} 4 $\times$ 1\,GbE ports \newline
-                \textit{Wi-Fi:} Dual-band 802.11ax (2.4\,GHz / 5\,GHz) \\
+                \textit{Ethernet Ports:}     4 $\times$ 1\,GbE ports \newline
+                \textit{Wi-Fi:}              Dual-band 802.11ax (2.4\,GHz | 2x2, 5\,GHz | 4x4) \\
             \midrule
             \textbf{Cables} 
                 & CAT.5E (up to 1\,Gbps) \\
@@ -44,7 +44,29 @@
             \label{tab:equipment-summary}
         \end{table}
 
-        \vspace{-0.1cm} % TODO: check
+        \begin{table}[ht]
+            \small
+            \centering
+            \begin{tabular}{@{}l p{0.78\columnwidth}@{}}
+            \toprule
+            \textbf{Connections} & \textbf{Key Specifications} \\
+            \midrule
+            \textbf{Ethernet} 
+                & \textit{Cabling:}     CAT.5E \newline
+                \textit{Nominal Speed:} 1\,Gbps    \hspace{2em}    \textit{Protocol:} 802.3?? \\ % TODO: complete
+            \midrule
+            \textbf{Wi-Fi} 
+                & \textit{Standard:}    802.11ax   \hspace{3.6em}  \textit{Security Protocol:} ? \newline % TODO: complete
+                \textit{Nominal Speed:} 1200\,Mbps \hspace{0.5em}  \textit{Frequency:} 5\,GHz \newline % TODO: complete
+                \textit{Bandwidth:}     80\,MHz    \hspace{3.25em} \textit{Channel:} ? \\ % TODO: complete
+            \bottomrule
+            \end{tabular}
+            \vspace{0.5cm}
+            \caption{Ethernet and Wi-Fi Connection Specifications}
+            \label{tab:connection-specs}
+        \end{table}
+
+        % \vspace{-0.1cm} % TODO: check
 
         This hardware setup allows us to compare Ethernet versus Wi-Fi performance under a consistent router and cabling environment. 
         In the next section, we detail the evaluation scenarios and the measurement methodology.
@@ -55,6 +77,7 @@
         For each scenario, the theoretical goodput is computed based on the nominal link capacity and protocol efficiency.
 
         \begin{enumerate}
+
             \item \textbf{Both Ethernet:} \\
             In this scenario, both PC1 and PC2 are connected to the router via CAT.5E cables, providing a nominal link capacity of 1\,Gbps. 
             The efficiency for Ethernet is calculated as follows:
@@ -98,6 +121,7 @@
             \[
             G_{UDP}^{Mixed} \leq 0.806 \times 867\,\text{Mbps} \approx 698\,\text{Mbps}.
             \]
+
         \end{enumerate}
 
         These calculations provide the theoretical upper bounds for goodput in each scenario. 
