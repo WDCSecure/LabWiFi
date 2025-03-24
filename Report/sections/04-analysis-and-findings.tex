@@ -38,19 +38,19 @@
                 \multicolumn{1}{c|}{1.5} \\
             \hline
             \multicolumn{2}{|c|}{Mixed} &
-                \multicolumn{1}{c|}{?} &
+                \multicolumn{1}{c|}{955} &
                 \multicolumn{1}{c|}{663.7} &
                 \multicolumn{1}{c|}{619.2} &
                 \multicolumn{1}{c|}{698.86} &
                 \multicolumn{1}{c|}{26.6} \\
             \hline
-            \multicolumn{2}{|c|}{Shared Capacity} &
-                \multicolumn{1}{c|}{?} &
-                \multicolumn{1}{c|}{536.8} &
-                \multicolumn{1}{c|}{440.5} &
-                \multicolumn{1}{c|}{722.2} &
-                \multicolumn{1}{c|}{112} \\
-            \hline
+           % \multicolumn{2}{|c|}{Shared Capacity} &
+           %     \multicolumn{1}{c|}{?} &
+           %     \multicolumn{1}{c|}{536.8} &
+           %     \multicolumn{1}{c|}{440.5} &
+           %     \multicolumn{1}{c|}{722.2} &
+           %     \multicolumn{1}{c|}{112} \\
+           % \hline
             \end{tabular}
             \vspace{0.5cm}
             \caption{TCP Results (Client $\rightarrow$ Server)}
@@ -207,7 +207,7 @@
                 \multicolumn{1}{c|}{Std} \\
             \hline
             \multicolumn{2}{|c|}{Both WiFi} &
-                \multicolumn{1}{c|}{480} &
+                \multicolumn{1}{c|}{510} &
                 \multicolumn{1}{c|}{487.8} &
                 \multicolumn{1}{c|}{453.1} &
                 \multicolumn{1}{c|}{499.9} &
@@ -221,19 +221,19 @@
                 \multicolumn{1}{c|}{1.73} \\
             \hline
             \multicolumn{2}{|c|}{Mixed} &
-                \multicolumn{1}{c|}{?} &
+                \multicolumn{1}{c|}{989} &
                 \multicolumn{1}{c|}{674.9} &
                 \multicolumn{1}{c|}{636.6} &
                 \multicolumn{1}{c|}{717.8} &
                 \multicolumn{1}{c|}{28} \\
             \hline
-            \multicolumn{2}{|c|}{Shared Capacity} &
-                \multicolumn{1}{c|}{?} &
-                \multicolumn{1}{c|}{472.1} &
-                \multicolumn{1}{c|}{355.9} &
-                \multicolumn{1}{c|}{699.1} &
-                \multicolumn{1}{c|}{121.1} \\
-            \hline
+           % \multicolumn{2}{|c|}{Shared Capacity} &
+           %     \multicolumn{1}{c|}{?} &
+           %     \multicolumn{1}{c|}{472.1} &
+           %     \multicolumn{1}{c|}{355.9} &
+           %     \multicolumn{1}{c|}{699.1} &
+           %     \multicolumn{1}{c|}{121.1} \\
+           % \hline
             \end{tabular}
             \vspace{0.5cm}
             \caption{UDP Results (Client $\rightarrow$ Server)}
@@ -252,16 +252,10 @@
                 %     \label{fig:io-eth-udp}
                 % \end{figure}
 
-                The throughput achieved is very close to the theoretical prediction, confirming that the wired setup reliably supports high-speed data transfer. 
-                The absence of retransmission or congestion control overhead in UDP further contributes to this consistent performance.
-                
-                In summary, the wired (Ethernet) tests demonstrate that both TCP and UDP protocols achieve performance levels very close to their theoretical capacities, with TCP showing stable throughput and low latency, and UDP exhibiting a consistent packet flow and high throughput. 
-                This confirms that, in a controlled wired environment, network performance is minimally impacted by protocol overhead or environmental factors.
+                The throughput achieved is very close to the theoretical prediction, confirming that the wired setup reliably supports high-speed data transfer.  The absence of retransmission or congestion control overhead in UDP further contributes to this consistent performance. In summary, the wired (Ethernet) tests demonstrate that both TCP and UDP protocols achieve performance levels very close to their theoretical capaci This confirms that, in a controlled wired environment, network performance is minimally impacted by protocol overhead or environmental factors.
 
             \item \textbf{Both WiFi:} \\
-                In the WiFi scenario, the I-O graph for UDP demonstrates a more consistent packet flow compared to TCP. 
-                However, despite the smoother transmission, the overall throughput remains below the theoretical upper bound. 
-                The lack of retransmission mechanisms in UDP allows for slightly higher instantaneous throughput; nonetheless, factors like interference and channel contention continue to impact performance.
+                In the WiFi scenario, the I-O graph for UDP demonstrates a more consistent packet flow compared to TCP.  However, despite the smoother transmission, the overall throughput remains below the theoretical upper bound.  The lack of retransmission mechanisms in UDP allows for slightly higher instantaneous throughput; nonetheless, factors like interference and channel contention continue to impact performance.
                 
                 % \begin{figure}[ht]
                 %     \centering
@@ -270,9 +264,7 @@
                 %     \label{fig:io-wifi-udp}
                 % \end{figure}
 
-                A direct comparison between TCP and UDP in the WiFi scenario shows that UDP can achieve marginally higher throughput due to its reduced overhead. 
-                Nonetheless, both protocols suffer from real-world limitations that prevent them from reaching their theoretical capacities. 
-                This discrepancy between capacity and theoretical goodput emphasizes the impact of wireless interference, channel contention, and protocol-specific overhead on performance.
+                A direct comparison between TCP and UDP in the WiFi scenario shows that UDP can achieve marginally higher throughput due to its reduced overhead.  This discrepancy between capacity and theoretical goodput emphasizes the impact of wireless interference, channel contention, and protocol-specific overhead on performance.
 
             \item \textbf{Mixed:} \\
                 In the mixed scenario, the UDP I-O graph indicates a consistent flow of packets, similar to the TCP case but with slightly less variability due to the absence of congestion control.
@@ -284,17 +276,11 @@
                 %     \label{fig:io-mix-udp}
                 % \end{figure}
 
-                The throughput observed is in line with expectations given that only the wireless link acts as the bottleneck. \\
-
-                In summary, the mixed scenario demonstrates that while the presence of a wired connection on one end improves overall latency and stability compared to a full WiFi configuration, the performance remains primarily constrained by the wireless link. 
-                Both TCP and UDP protocols achieve throughput values that are consistent with theoretical predictions for a mixed Ethernet/WiFi environment.
+                In summary, the mixed scenario demonstrates that while the presence of a wired connection on one end improves overall latency and stability compared to a full WiFi configuration, the performance remains primarily constrained by the wireless link.  Both TCP and UDP protocols achieve throughput values that are consistent with theoretical predictions for a mixed Ethernet/WiFi environment.
                 
             \item[3a.] \textbf{Shared Capacity:} \\
-                The UDP tests under the shared capacity scenario also reveal the negative impact of the additional download traffic. 
-                Although UDP is less affected by protocol overhead, the increased contention for the wireless medium leads to degraded performance.
-                The UDP performance in this scenario is indirectly reflected in the I-O graph.
-                The steady flow of packets observed in a non-interfered environment is disrupted, resulting in a lower effective throughput.
-
+                The UDP tests under the shared capacity scenario also reveal the negative impact of the additional download traffic.  Although UDP is less affected by protocol overhead, the increased contention for the wireless medium leads to degraded performance.
+                
                 % \begin{figure}[ht]
                 %     \centering
                 %     \includegraphics[width=0.9\columnwidth]{images/graphs/I-O/I-O_MIX_MITM_UDP.pdf}
@@ -302,10 +288,6 @@
                 %     \label{fig:io-mitm-udp}
                 % \end{figure}
 
-                Despite the inherent resilience of UDP to retransmission delays, the interference from the third host causes a noticeable reduction in performance. 
-                The graph shows that the packet flow is not as consistent, further underlining the effects of shared capacity when additional traffic is present.
-
-                Overall, the shared capacity scenario clearly demonstrates that when a third host generates significant traffic (as in the case of streaming a movie), the available network resources are further divided, leading to performance degradation for both TCP and UDP protocols. 
-                This scenario highlights the importance of considering real-world usage patterns and interference when designing and evaluating network performance.
+                Despite the inherent resilience of UDP to retransmission delays, the interference from the third host causes a noticeable reduction in performance.  Overall, the shared capacity scenario clearly demonstrates that when a third host generates significant traffic (as in the case of streaming a movie), the available network resources are further divided, leading to performance degradation for both TCP and UDP protocols.  This scenario highlights the importance of considering real-world usage patterns and interference when designing and evaluating network performance.
 
         \end{enumerate}
