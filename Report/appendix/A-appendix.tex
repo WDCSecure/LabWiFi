@@ -7,7 +7,9 @@
 
         \begin{lstlisting}[language=Python, caption={Excerpt for server mode initialization.}]
       def run_server():
-          """Run iperf3 server with clean output handling."""
+          """
+          Run iperf3 server with clean output handling.
+          """
           server_logger.info("Starting iperf3 server...")
           
           proc = subprocess.Popen(
@@ -24,7 +26,9 @@
 
         \begin{lstlisting}[language=Python, caption={Excerpt for client mode execution.}]
       def run_client(server_ip, udp=False, bitrate="1M", iterations=10):
-          """Run iperf3 client tests and generate reports."""
+          """
+          Run iperf3 client tests and generate reports.
+          """
           for i in range(iterations):
               cmd = ["iperf3", "-c", server_ip, "-J", "-t", "10", "-i", "1"]
               if udp:
@@ -59,4 +63,4 @@
     \noindent These snippets illustrate how the script handles server mode initialization, client tests (both TCP and UDP), and logging. 
     Error handling, multithreaded \texttt{stderr} management, and CSV report generation are also included in the complete script.
     
-    \noindent All the code for the report and lab material is available on the repository: \url{https://github.com/WDCSecure/LabWiFi.git}
+    \noindent All the code for the report and lab material is available on the repository~\cite{LabWiFiRepo}: \url{https://github.com/WDCSecure/LabWiFi.git}

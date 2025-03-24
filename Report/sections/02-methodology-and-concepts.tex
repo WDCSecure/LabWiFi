@@ -39,7 +39,7 @@
         \begin{enumerate}
 
             \item 
-                For \textbf{Ethernet}, the efficiency for TCP is computed as:
+                For \textbf{Ethernet}~\cite{ieee8023}, the efficiency for TCP is computed as:
                 \[
                 \eta_{TCP}^{Eth} = \frac{MSS}{MSS + \text{TCP headers} + \text{IP headers} + \text{Eth. overhead}},
                 \]
@@ -68,7 +68,7 @@
 
 
             \item  
-                For \textbf{WiFi}, additional factors must be considered due to its half-duplex nature and the inherent overhead of the 802.11 protocol (e.g., control frames, retransmissions, and channel contention). 
+                For \textbf{WiFi}~\cite{ieee80211ax}, additional factors must be considered due to its half-duplex nature and the inherent overhead of the 802.11 protocol (e.g., control frames, retransmissions, and channel contention). 
                 In the case of \textbf{TCP over WiFi}, the effective efficiency is typically around 80\% under optimal conditions. 
                 This lower efficiency arises from the extra overhead associated with TCP’s connection-oriented features—such as congestion control, 
                 flow control, and the guarantee of in-order delivery—which require additional control packets and retransmissions. 
