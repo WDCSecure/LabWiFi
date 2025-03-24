@@ -60,7 +60,12 @@
         \begin{enumerate}
 
             \item \textbf{Both Ethernet:} \\
-                Figure~\ref{fig:throughput-eth-tcp} shows the TCP throughput measured in the Ethernet scenario. The graph reveals a rapid ramp-up in throughput during the first few seconds, followed by a stable transmission rate that approaches the theoretical value. The \textbf{Maximum Segment Size} (MSS) reaches and remains stable at 1500 bytes, as defined by the TCP protocol. Additionally, the \textbf{bandwidth} is stable at \textbf{950 Mbps}, as indicated by the results and the low standard deviation.              
+                Figure~\ref{fig:throughput-eth-tcp} shows the TCP throughput measured in the Ethernet scenario. 
+                The graph reveals a rapid ramp-up in throughput during the first few seconds, followed by a stable transmission rate that approaches the theoretical value. 
+                The \textbf{Maximum Segment Size} (MSS) reaches and remains stable at 1500 bytes, as defined by the TCP protocol. Additionally, the \textbf{bandwidth} is stable at \textbf{950 Mbps}, as indicated by the results and the low standard deviation.              
+                
+                \vspace{-0.1cm} % TODO: check
+
                 \begin{figure}[ht]
                     \centering
                     \includegraphics[width=0.9\columnwidth]{images/graphs/Throughput/Throughput_ETH_TCP.pdf}
@@ -88,9 +93,11 @@
 
                 Overall, the Ethernet scenario demonstrates a near-ideal performance with high throughput and minimal latency, closely matching the theoretical predictions.
 
+            \vspace{0.2cm} % TODO: check
+
             \item \textbf{Both WiFi:} \\
                 In the WiFi scenario, the throughput graph (Fig.~\ref{fig:throughput-wifi-tcp}) shows an initial ramp-up phase during the first 2 seconds, after which the throughput fluctuates around an average value of 434.7\,Mbps. 
-                These fluctuations suggest that protocol overhead, wireless interference, and the half-duplex nature of WiFi adversely affect performance. \\
+                These fluctuations suggest that protocol overhead, wireless interference, and the half-duplex nature of WiFi adversely affect performance.
                 
                 \begin{figure}[ht]
                     \centering
@@ -99,7 +106,7 @@
                     \label{fig:throughput-wifi-tcp}
                 \end{figure}
 
-                The round-trip time (RTT) measurements (Fig.~\ref{fig:rtt-wifi-tcp}) reveal RTT values ranging from about 20-50\,ms, indicating intermittent delays likely due to congestion and contention in the wireless medium. \\
+                The round-trip time (RTT) measurements (Fig.~\ref{fig:rtt-wifi-tcp}) reveal RTT values ranging from about 20-50\,ms, indicating intermittent delays likely due to congestion and contention in the wireless medium.
                 
                 \begin{figure}[ht]
                     \centering
@@ -120,9 +127,11 @@
                 Overall, while the theoretical capacity for TCP over WiFi is estimated to be around 480\,Mbps, the experimental data indicate that real-world factors does not reduce that much the effective throughput of the WiFi network. 
                 This due to the fact that the network was in an ideal condition, where only the client and the server were connected to the access point, and no other devices were generating traffic.
 
+            \vspace{0.2cm} % TODO: check
+
             \item \textbf{Mixed:} \\
                 Figure~\ref{fig:throughput-mix-tcp} displays the TCP throughput for the mixed configuration. 
-                The graph shows that the throughput reaches a stable level after an initial ramp-up phase, although it remains below the Ethernet scenario and is consistent with the expected reduction due to the reliance on the wireless link. \\
+                The graph shows that the throughput reaches a stable level after an initial ramp-up phase, although it remains below the Ethernet scenario and is consistent with the expected reduction due to the reliance on the wireless link.
 
                 \begin{figure}[ht]
                     \centering
@@ -132,7 +141,7 @@
                 \end{figure}
 
                 The round-trip time (RTT) measurements, presented in Figure~\ref{fig:rtt-mix-tcp}, indicate moderate latency, with RTT values generally remaining within a lower range compared to the pure WiFi scenario. 
-                This suggests that the wired segment helps in reducing overall latency. \\
+                This suggests that the wired segment helps in reducing overall latency.
 
                 \begin{figure}[ht]
                     \centering
@@ -149,9 +158,11 @@
                 %     \caption{Wireshark I-O Graph for TCP in the Mixed Scenario.}
                 %     \label{fig:io-mix-tcp}
                 % \end{figure}
+
+            \vspace{0.2cm} % TODO: check
                 
             \item[3a.] \textbf{Shared Capacity:} \\
-                In this scenario, a third host connected to the same access point was concurrently downloading the film "Natale a Rio" (directed by Neri Parenti), which introduced significant interference during the tests. 
+                In this scenario, a third host connected to the same access point was concurrently downloading the film "Natale a Rio"~\cite{Natale_a_Rio} (directed by Neri Parenti), which introduced significant interference during the tests. 
                 This additional traffic compromised the available network capacity, leading to degraded performance.
                 % Figure~\ref{fig:throughput-mitm-tcp} shows the TCP throughput under this shared capacity condition. 
                 % Compared to the mixed scenario without interference, the throughput exhibits a notable decrease. 
@@ -253,6 +264,8 @@
                 % \end{figure}
                 The throughput achieved is very close to the theoretical prediction, confirming that the wired setup reliably supports high-speed data transfer.  The absence of retransmission or congestion control overhead in UDP further contributes to this consistent performance. In summary, the wired (Ethernet) tests demonstrate that both TCP and UDP protocols achieve performance levels very close to their theoretical capaci This confirms that, in a controlled wired environment, network performance is minimally impacted by protocol overhead or environmental factors.
 
+            \vspace{0.2cm} % TODO: check
+
             \item \textbf{Both WiFi:} \\
                 % In the WiFi scenario, the I-O graph for UDP demonstrates a more consistent packet flow compared to TCP.  However, despite the smoother transmission, the overall throughput remains below the theoretical upper bound.  The lack of retransmission mechanisms in UDP allows for slightly higher instantaneous throughput; nonetheless, factors like interference and channel contention continue to impact performance.
                 % \begin{figure}[ht]
@@ -262,6 +275,8 @@
                 %     \label{fig:io-wifi-udp}
                 % \end{figure}
                 In the WiFi scenario, UDP shows a steadier flow than TCP. Although its reduced overhead allows for marginally higher instantaneous throughput, the overall performance still falls short of the theoretical maximum due to interference and channel contention. This comparison highlights how wireless limitations, such as interference and protocol overhead, impact real-world throughput.
+
+            \vspace{0.2cm} % TODO: check
 
             \item \textbf{Mixed:} \\
                 % In the mixed scenario, the UDP I-O graph indicates a consistent flow of packets, similar to the TCP case but with slightly less variability due to the absence of congestion control.
@@ -273,6 +288,8 @@
                 % \end{figure}
                 In the mixed scenario, UDP transmissions exhibit a generally consistent flow, benefiting from the absence of congestion control overhead. The presence of a wired link on one end reduces overall latency and provides more stable performance compared to a fully wireless setup. Nonetheless, the wireless segment remains the principal bottleneck, limiting the achievable throughput. Overall, both TCP and UDP in the mixed scenario approximate their respective theoretical predictions, illustrating how partial reliance on Ethernet can mitigate some of the challenges inherent to WiFi.
                 
+            \vspace{0.2cm} % TODO: check
+            
             \item[3a.] \textbf{Shared Capacity:} \\
                 The UDP tests under the shared capacity scenario also reveal the negative impact of the additional download traffic.
                 % \begin{figure}[ht]
