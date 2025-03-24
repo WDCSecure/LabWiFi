@@ -66,15 +66,24 @@
                 \eta_{UDP}^{Eth} \approx \frac{1472}{1472 + 20 + 8 + 38} \approx 95.7\%.
                 \]
 
-            \item 
-                For \textbf{WiFi}, additional factors must be considered due to its half-duplex nature and the inherent overhead of the 802.11 protocol (e.g., control frames, retransmissions, and channel contention). 
-                Consequently, the effective efficiency is reduced by a WiFi-specific factor (\(\eta_{WiFi}\)). 
-                The adjusted efficiency for TCP over WiFi can be expressed as:
-                \[
-                \eta_{TCP}^{WiFi} = \eta_{TCP}^{Eth} \times \eta_{WiFi},
-                \]
-                with \(\eta_{WiFi}\) typically around 80\% in optimal conditions. A similar adjustment applies for UDP.
 
+            \item  
+                For \textbf{WiFi}, additional factors must be considered due to its half-duplex nature and the inherent overhead of the 802.11 protocol (e.g., control frames, retransmissions, and channel contention). 
+                In the case of \textbf{TCP over WiFi}, the effective efficiency is typically around 80\% under optimal conditions. 
+                This lower efficiency arises from the extra overhead associated with TCP’s connection-oriented features—such as congestion control, 
+                flow control, and the guarantee of in-order delivery—which require additional control packets and retransmissions. 
+                
+                In contrast, \textbf{UDP over WiFi} generally attains an efficiency of approximately 85–90\% by avoiding these mechanisms, 
+                leading to a simpler and faster data transmission process.
+        
+                \[
+                    \eta_{TCP}^{WiFi} = \eta_{TCP}^{Eth} \times \eta_{WiFi,TCP} \quad (\approx 80\%),
+                \]
+                and
+                \[
+                    \eta_{UDP}^{WiFi} = \eta_{UDP}^{Eth} \times \eta_{WiFi,UDP} \quad (\approx 85\text{–}90\%).
+                \]
+            
         \end{enumerate}
 
         \noindent These theoretical estimates set an upper bound on the achievable goodput, against which our experimental results are compared. 
