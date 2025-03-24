@@ -200,7 +200,7 @@
 
     \subsection{UDP Performance} \label{subsec:udp-performance}
 
-        The UDP tests offer an insightful comparison to the TCP results by eliminating congestion control and acknowledgment overhead. The analysis for UDP performance across different scenarios is structured as follows:
+        The UDP tests offer an insightful comparison to the TCP results by eliminating congestion control and acknowledgment overhead. The analysis for UDP is structured as follows:
 
         \begin{table}[H]
             \small
@@ -252,52 +252,20 @@
             \label{tab:udp-results}
         \end{table}
 
+
         \begin{enumerate}
-
             \item \textbf{Both Ethernet:} \\
-                % In the Ethernet configuration, the I-O graph for UDP indicates a steady packet flow, with minimal fluctuations compared to the WiFi scenario.
-                % \begin{figure}[ht]
-                %     \centering
-                %     \includegraphics[width=0.9\columnwidth]{images/graphs/I-O/I-O_ETH_UDP.pdf}
-                %     \caption{Wireshark I-O Graph for UDP in the Ethernet Scenario.}
-                %     \label{fig:io-eth-udp}
-                % \end{figure}
-                The throughput achieved is very close to the theoretical prediction, confirming that the wired setup reliably supports high-speed data transfer.  The absence of retransmission or congestion control overhead in UDP further contributes to this consistent performance. In summary, the wired (Ethernet) tests demonstrate that both TCP and UDP protocols achieve performance levels very close to their theoretical capaci This confirms that, in a controlled wired environment, network performance is minimally impacted by protocol overhead or environmental factors.
-
-            \vspace{0.2cm} % TODO: check
+                In the Ethernet scenario, UDP achieves a near-theoretical throughput of \textbf{952.8 Mbps} (vs. TCP’s 939.6 Mbps), with minimal standard deviation (\textbf{1.73 Mbps}). The absence of retransmissions or congestion control allows UDP to utilize the full wired capacity. While TCP’s latency remains marginally lower (1–3 ms RTT) due to acknowledgment-based stability, UDP’s lack of overhead enables slightly higher throughput.
+            \\
 
             \item \textbf{Both WiFi:} \\
-                % In the WiFi scenario, the I-O graph for UDP demonstrates a more consistent packet flow compared to TCP.  However, despite the smoother transmission, the overall throughput remains below the theoretical upper bound.  The lack of retransmission mechanisms in UDP allows for slightly higher instantaneous throughput; nonetheless, factors like interference and channel contention continue to impact performance.
-                % \begin{figure}[ht]
-                %     \centering
-                %     \includegraphics[width=0.9\columnwidth]{images/graphs/I-O/I-O_WiFi_UDP.pdf}
-                %     \caption{Wireshark I-O Graph for UDP in the WiFi Scenario.}
-                %     \label{fig:io-wifi-udp}
-                % \end{figure}
-                In the WiFi scenario, UDP shows a steadier flow than TCP. Although its reduced overhead allows for marginally higher instantaneous throughput, the overall performance still falls short of the theoretical maximum due to interference and channel contention. This comparison highlights how wireless limitations, such as interference and protocol overhead, impact real-world throughput.
-
-            \vspace{0.2cm} % TODO: check
+            UDP averages \textbf{487.8 Mbps} (vs. TCP’s 434.7 Mbps) in WiFi, achieving a \textbf{12\% throughput advantage} by avoiding TCP’s congestion control. Despite outperforming TCP, UDP falls short of the \textbf{510 Mbps theoretical maximum} due to WiFi interference and contention. Moreover, it shows lower variability (std. dev. \textbf{15.8 Mbps} vs. TCP’s \textbf{22.5 Mbps}), indicating smoother performance. This makes UDP preferable for real-time applications prioritizing speed over error correction.
+            \\
 
             \item \textbf{Mixed:} \\
-                % In the mixed scenario, the UDP I-O graph indicates a consistent flow of packets, similar to the TCP case but with slightly less variability due to the absence of congestion control.
-                % \begin{figure}[ht]
-                %     \centering
-                %     \includegraphics[width=0.9\columnwidth]{images/graphs/I-O/I-O_MIX_UDP.pdf}
-                %     \caption{Wireshark I-O Graph for UDP in the Mixed Scenario.}
-                %     \label{fig:io-mix-udp}
-                % \end{figure}
-                In the mixed scenario, UDP transmissions exhibit a generally consistent flow, benefiting from the absence of congestion control overhead. The presence of a wired link on one end reduces overall latency and provides more stable performance compared to a fully wireless setup. Nonetheless, the wireless segment remains the principal bottleneck, limiting the achievable throughput. Overall, both TCP and UDP in the mixed scenario approximate their respective theoretical predictions, illustrating how partial reliance on Ethernet can mitigate some of the challenges inherent to WiFi.
-                
-            \vspace{0.2cm} % TODO: check
-            
-            \item[3a.] \textbf{Shared Capacity:} \\
-                The UDP tests under the shared capacity scenario also reveal the negative impact of the additional download traffic.
-                % \begin{figure}[ht]
-                %     \centering
-                %     \includegraphics[width=0.9\columnwidth]{images/graphs/I-O/I-O_MIX_MITM_UDP.pdf}
-                %     \caption{Wireshark I-O Graph for UDP in the Shared Capacity Scenario.}
-                %     \label{fig:io-mitm-udp}
-                % \end{figure}
-                Despite the inherent resilience of UDP to retransmission delays, the interference from the third host causes a noticeable reduction in performance.  Overall, the shared capacity scenario clearly demonstrates that when a third host generates significant traffic (as in the case of streaming a movie), the available network resources are further divided, leading to performance degradation for both TCP and UDP protocols.  This scenario highlights the importance of considering real-world usage patterns and interference when designing and evaluating network performance.
+                The mixed scenario shows UDP achieving \textbf{674.9 Mbps} (vs. TCP’s 663.7 Mbps). The wired segment reduces latency, but the wireless link remains the bottleneck. UDP’s performance aligns closely with TCP here, as both protocols are constrained by WiFi’s limitations. UDP’s throughput is \textbf{~1.8\% higher} than TCP, reflecting its ability to bypass congestion control.
+            \\
 
+            \item[3a.] \textbf{Shared Capacity:} \\
+                In the shared capacity test, UDP throughput drops significantly. The third host’s download introduces contention, reducing available bandwidth. UDP’s lack of congestion control leads to aggressive transmission attempts, but packet drops result in lower effective throughput. Unlike TCP, which degrades predictably due to its back-off mechanism, UDP’s performance becomes more volatile. This highlights TCP’s adaptability in shared environments, where fairness and resource allocation are critical, while UDP’s rigidity makes it less suitable for contested networks.
         \end{enumerate}
