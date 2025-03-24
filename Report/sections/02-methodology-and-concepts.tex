@@ -15,8 +15,8 @@
         \begin{itemize}
             \item \textbf{iperf3}: Used to generate traffic and measure goodput in both TCP and UDP modes. By executing repeated tests, iperf3 provides key metrics such as minimum, maximum, average, and standard deviation of the throughput.
             \item \textbf{Wireshark}: Used to capture and analyze network traffic, Wireshark helped inspect data flows, identify frames, and validate results. It also generated useful charts for analyzing TCP streams.
-            \item \textbf{Automation Script}: A Python script was developed to automate the entire measurement process. This script manages both server and client modes of iperf3, logs output in JSON, CSV, and plain text formats, and computes summary statistics. 
-                The script accepts several command-line flags, as detailed in the Appendix. % TODO: review
+            \item \textbf{Automation Script}: A Python script was developed to automate the entire measurement process. This script manages both server and client modes of iperf3, logs output, and computes summary statistics. 
+                The script accepts several command-line flags, as detailed in the Appendix~\ref{sec:appendix}.
             % \begin{itemize}
             %     \item \textbf{--server}: Launches the iperf3 server in JSON output mode.
             %     \item \textbf{<SERVER\_IP>}: Specifies the server's IP address when running in client mode.
@@ -77,11 +77,7 @@
                 leading to a simpler and faster data transmission process.
         
                 \[
-                    \eta_{TCP}^{WiFi} (\approx 80\%),
-                \]
-                and
-                \[
-                    \eta_{UDP}^{WiFi} (\approx 85\text{–}90\%).
+                    \eta_{TCP}^{WiFi} (\approx 80\%) \hspace{1em} \text{ and } \hspace{1em} \eta_{UDP}^{WiFi} (\approx 85\text{–}90\%).
                 \]
             
         \end{enumerate}

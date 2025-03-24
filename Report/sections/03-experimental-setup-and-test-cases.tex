@@ -11,6 +11,8 @@
         In this section, we describe the hardware and software configuration used to perform our network performance measurements. 
         Table~\ref{tab:equipment-summary} summarizes the main devices, their interfaces, and relevant specifications. 
 
+        \vspace{-0.1cm} % TODO: check
+
         \begin{table}[ht]
             \small
             \centering
@@ -44,12 +46,14 @@
             \label{tab:equipment-summary}
         \end{table}
 
+        \vspace{-0.6cm} % TODO: check
+
         \begin{table}[ht]
             \small
             \centering
             \begin{tabular}{@{}l p{0.78\columnwidth}@{}}
             \toprule
-            \textbf{Connections} & \textbf{Key Specifications} \\
+            \textbf{Connection} & \textbf{Key Specifications} \\
             \midrule
             \textbf{Ethernet} 
                 & \textit{Cabling:}     CAT.5E \newline
@@ -66,9 +70,9 @@
             \label{tab:connection-specs}
         \end{table}
 
-        % \vspace{-0.1cm} % TODO: check
+        \vspace{-0.3cm} % TODO: check
 
-        This hardware setup allows us to compare Ethernet versus Wi-Fi performance under a consistent router and cabling environment. 
+        \noindent This hardware setup allows us to compare Ethernet versus Wi-Fi performance under a consistent router and cabling environment. 
         In the next section, we detail the evaluation scenarios and the measurement methodology.
 
     \subsection{Evaluation Scenarios} \label{subsec:evaluation-scenarios}
@@ -80,7 +84,8 @@
 
             \item \textbf{Both Ethernet:} \\
             In this scenario, both PC1 and PC2 are connected to the router via CAT.5E cables, providing a nominal link capacity of 1\,Gbps. 
-            The efficiency for Ethernet is calculated as follows:
+
+            \noindent The efficiency for Ethernet is calculated as follows:
             \[
             \eta_{TCP}^{Eth} \approx \frac{1460}{1460 + 20 + 20 + 38} \approx 94.9\%,
             \]
@@ -109,7 +114,7 @@
             G_{UDP}^{WiFi} \leq 0.85 \times 1.2\,\text{Gbps} \times \frac{1}{2} \approx 510\,\text{Mbps}.
             \]
 
-            % \vspace{0.1cm}
+            \vspace{0.1cm} % TODO: check
 
             \item \textbf{Mixed Scenario:} \\
             In this configuration, one device (PC1) is connected via Ethernet while the other (PC2) uses its Wi-Fi interface. 
@@ -126,7 +131,9 @@
 
         \end{enumerate}
 
-        These calculations provide the theoretical upper bounds for goodput in each scenario. 
+        \vspace{0.1cm} % TODO: check
+
+        \noindent These calculations provide the theoretical upper bounds for goodput in each scenario. 
         The experimental results, obtained via automated measurements using the provided Python script, are compared against these predictions to evaluate real-world performance.
 
         \medskip
