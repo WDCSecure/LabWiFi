@@ -122,16 +122,25 @@
 
             \item \textbf{Mixed Scenario:} \\
             In this configuration, one device (PC1) is connected via Ethernet while the other (PC2) uses its Wi-Fi interface. 
-            Since only one side is on Wi-Fi, we average the Wi-Fi portion and the Ethernet portion rather than halving for two Wi-Fi paths. 
-            Hence, the expected goodput is:
+            So the expected goodput is determined by the slower link, so we compute the min between the two.
+            Since only one side is on Wi-Fi, the Wi-Fi estimated goodput has not to be halved.
+            Thus, the theoretical goodput is:
+
+            \vspace{-0.1cm} % TODO: check
 
             \[
-            G_{TCP}^{Mixed} \leq \frac{(0.80 \times 1.2\,\text{Gbps}) + (0.949 \times 1.0\,\text{Gbps})}{2} \approx 955\,\text{Mbps},
+            G_{TCP}^{Mixed} \leq \min \{0.80 \times 1.2\,\text{Gbps}, 0.949 \times 1.0\,\text{Gbps}\} \approx 949\,\text{Mbps},
             \]
 
+            \vspace{-0.2cm} % TODO: check
+
             \[
-            G_{UDP}^{Mixed} \leq \frac{(0.85 \times 1.2\,\text{Gbps}) + (0.957 \times 1.0\,\text{Gbps})}{2} \approx 989\,\text{Mbps}.
+            G_{UDP}^{Mixed} \leq \min \{0.85 \times 1.2\,\text{Gbps}, 0.957 \times 1.0\,\text{Gbps}\} \approx 957\,\text{Mbps}.
             \]
+
+            \vspace{0.1cm} % TODO: check
+
+            We can see that the Eth. link is the bottleneck in this scenario.
 
         \end{enumerate}
 
@@ -140,4 +149,4 @@
         \noindent These calculations provide the theoretical upper bounds for goodput in each scenario. 
         The experimental results, obtained via automated measurements using the provided Python script, are compared against these predictions to evaluate real-world performance.
 
-        \medskip
+        % \medskip

@@ -23,13 +23,6 @@
                 \multicolumn{1}{c|}{Max} &
                 \multicolumn{1}{c|}{Std} \\
             \hline
-            \multicolumn{2}{|c|}{Both WiFi} &
-                \multicolumn{1}{c|}{480} &
-                \multicolumn{1}{c|}{434.7} &
-                \multicolumn{1}{c|}{396.3} &
-                \multicolumn{1}{c|}{461.96} &
-                \multicolumn{1}{c|}{22.5} \\
-            \hline
             \multicolumn{2}{|c|}{Both Ethernet} &
                 \multicolumn{1}{c|}{949} &
                 \multicolumn{1}{c|}{939.6} &
@@ -37,8 +30,15 @@
                 \multicolumn{1}{c|}{942.7} &
                 \multicolumn{1}{c|}{1.5} \\
             \hline
+            \multicolumn{2}{|c|}{Both WiFi} &
+                \multicolumn{1}{c|}{480} &
+                \multicolumn{1}{c|}{434.7} &
+                \multicolumn{1}{c|}{396.3} &
+                \multicolumn{1}{c|}{461.96} &
+                \multicolumn{1}{c|}{22.5} \\
+            \hline
             \multicolumn{2}{|c|}{Mixed} &
-                \multicolumn{1}{c|}{955} &
+                \multicolumn{1}{c|}{949} &
                 \multicolumn{1}{c|}{663.7} &
                 \multicolumn{1}{c|}{619.2} &
                 \multicolumn{1}{c|}{698.86} &
@@ -218,13 +218,6 @@
                 \multicolumn{1}{c|}{Max} &
                 \multicolumn{1}{c|}{Std} \\
             \hline
-            \multicolumn{2}{|c|}{Both WiFi} &
-                \multicolumn{1}{c|}{510} &
-                \multicolumn{1}{c|}{487.8} &
-                \multicolumn{1}{c|}{453.1} &
-                \multicolumn{1}{c|}{499.9} &
-                \multicolumn{1}{c|}{15.8} \\
-            \hline
             \multicolumn{2}{|c|}{Both Ethernet} &
                 \multicolumn{1}{c|}{957} &
                 \multicolumn{1}{c|}{952.8} &
@@ -232,8 +225,15 @@
                 \multicolumn{1}{c|}{954.6} &
                 \multicolumn{1}{c|}{1.73} \\
             \hline
+            \multicolumn{2}{|c|}{Both WiFi} &
+                \multicolumn{1}{c|}{510} &
+                \multicolumn{1}{c|}{487.8} &
+                \multicolumn{1}{c|}{453.1} &
+                \multicolumn{1}{c|}{499.9} &
+                \multicolumn{1}{c|}{15.8} \\
+            \hline
             \multicolumn{2}{|c|}{Mixed} &
-                \multicolumn{1}{c|}{989} &
+                \multicolumn{1}{c|}{957} &
                 \multicolumn{1}{c|}{674.9} &
                 \multicolumn{1}{c|}{636.6} &
                 \multicolumn{1}{c|}{717.8} &
@@ -269,3 +269,4 @@
             \item[3a.] \textbf{Shared Capacity:} \\
                 In the shared capacity test, UDP throughput drops significantly. The third host’s download introduces contention, reducing available bandwidth. UDP’s lack of congestion control leads to aggressive transmission attempts, but packet drops result in lower effective throughput. Unlike TCP, which degrades predictably due to its back-off mechanism, UDP’s performance becomes more volatile. This highlights TCP’s adaptability in shared environments, where fairness and resource allocation are critical, while UDP’s rigidity makes it less suitable for contested networks.
         \end{enumerate}
+    
