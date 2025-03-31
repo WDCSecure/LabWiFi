@@ -10,13 +10,13 @@
 
     \subsection{Selected Tools} \label{subsec:selected-tools}
 
-        To evaluate the performance of both Ethernet and WiFi connections, we utilized several specialized tools:
+    To evaluate the performance of Ethernet and WiFi connections, we utilized several specialized tools:
 
         \begin{itemize}
-            \item \textbf{iperf3}: Used to generate traffic and measure goodput in both TCP and UDP modes. By executing repeated tests, iperf3 provides key metrics such as minimum, maximum, average, and standard deviation of the throughput.
-            \item \textbf{Wireshark}: Used to capture and analyze network traffic, Wireshark helped inspect data flows, identify frames, and validate results. It also generated useful charts for analyzing TCP streams.
-            \item \textbf{Automation Script}: A Python script was developed to automate the entire measurement process. This script manages both server and client modes of iperf3, logs output, and computes summary statistics. 
-                The script accepts several command-line flags, as detailed in the Appendix~\ref{sec:appendix}.
+            \item \textbf{iperf3}: Used to generate traffic and measure goodput in both TCP and UDP modes. With repeated trials, iperf3 provides valuable metrics such as minimum, maximum, average, and standard deviation of the throughput.
+            \item \textbf{Wireshark}: For capturing and analyzing network traffic, Wireshark helped analyze data flows, identify frames, and confirm results. It also generated useful charts for analyzing TCP streams.
+            \item \textbf{Automation Script}: A Python script was written to automate the entire measurement process. The script operates on both server and client modes of iperf3, logs output, and computes summary statistics. 
+                The script accepts a series of command-line flags, as described in the Appendix~\ref{sec:appendix}.
             % \begin{itemize}
             %     \item \textbf{--server}: Launches the iperf3 server in JSON output mode.
             %     \item \textbf{<SERVER\_IP>}: Specifies the server's IP address when running in client mode.
@@ -68,12 +68,12 @@
 
 
             \item  
-                For \textbf{WiFi}~\cite{ieee80211ax}, additional factors must be considered due to its half-duplex nature and the inherent overhead of the 802.11 protocol (e.g., control frames, retransmissions, and channel contention). 
-                In the case of \textbf{TCP over WiFi}, the effective efficiency is typically around 80\% under optimal conditions. 
-                This lower efficiency arises from the extra overhead associated with TCP’s connection-oriented features—such as congestion control, 
-                flow control, and the guarantee of in-order delivery—which require additional control packets and retransmissions. 
+                For \textbf{WiFi}~\cite{ieee80211ax}, there are additional considerations to account for due to its half-duplex nature and the overhead of the 802.11 protocol (e.g., control frames, retransmissions, and channel contention). 
+                For \textbf{TCP over WiFi}, the actual efficiency is typically around 80\% under optimal conditions. 
+                This lower efficiency arises from the extra overhead of TCP’s connection-oriented features—such as congestion control, 
+                flow control, and the guarantee of in-order delivery—which add depending on extra control packets and retransmissions.
                 
-                In contrast, \textbf{UDP over WiFi} generally attains an efficiency of approximately 85–90\% by avoiding these mechanisms, 
+                Whereas, \textbf{UDP over WiFi} typically achieves the efficiency of around 85–90\% by avoiding these mechanisms, 
                 leading to a simpler and faster data transmission process.
         
                 \[
@@ -82,5 +82,5 @@
             
         \end{enumerate}
 
-        \noindent These theoretical estimates set an upper bound on the achievable goodput, against which our experimental results are compared. 
-        Discrepancies between theory and practice are primarily due to dynamic environmental factors, such as interference, channel variability, and the inherent limitations of wireless communication.
+        \noindent These theoretical estimates impose an upper bound on the amount of achievable goodput that our results are compared to.
+        Discrepancies between theory and practice are primarily due to dynamic environmental variables, such as interference, channel variation, and nature's intrinsic constraint on wireless communications.

@@ -6,7 +6,7 @@ PDF_FILE='main.pdf'
 SECTIONS_DIR="sections"
 
 # Set custom PDF name
-CUSTOM_PDF_NAME="LabWiFi.pdf"
+CUSTOM_PDF_NAME="WiFiReport_WDCSecure.pdf"
 
 # Define color codes
 RED='\033[0;31m'
