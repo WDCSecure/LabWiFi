@@ -96,9 +96,8 @@
             \vspace{0.2cm} % TODO: check
 
             \item \textbf{Both WiFi:} \\
-                In the WiFi scenario, the throughput graph (Fig.~\ref{fig:throughput-wifi-tcp}) shows an initial ramp-up phase during the first 2 seconds, after which the throughput fluctuates around an average value of 434.7\,Mbps. 
-                These fluctuations suggest that protocol overhead, wireless interference, and the half-duplex nature of WiFi adversely affect performance.
-                
+                In the WiFi trace, the throughput plot (Fig.~\ref{fig:throughput-wifi-tcp}) shows an upfront ramp-up phase over the first 2 seconds, followed by a varying throughput about a mean of 434.7 Mbps. The up and down in these traces due to protocol overhead, some wireless interference, and WiFi being half-duplex, reduces its performing capability.    
+
                 \begin{figure}[ht]
                     \centering
                     \includegraphics[width=0.9\columnwidth]{images/graphs/Throughput/Throughput_WiFi_TCP.pdf}
@@ -106,7 +105,7 @@
                     \label{fig:throughput-wifi-tcp}
                 \end{figure}
 
-                The round-trip time (RTT) measurements (Fig.~\ref{fig:rtt-wifi-tcp}) reveal RTT values ranging from about 20-50\,ms, indicating intermittent delays likely due to congestion and contention in the wireless medium.
+                RTT measurements (Fig. 4) show RTT in the range of around 20-50 ms, with some delays probably caused by congestion and contention in the wireless medium.
                 
                 \begin{figure}[ht]
                     \centering
@@ -124,8 +123,7 @@
                 %     \label{fig:io-wifi-tcp}
                 % \end{figure}}
 
-                Overall, while the theoretical capacity for TCP over WiFi is estimated to be around 480\,Mbps, the experimental data indicate that real-world factors does not reduce that much the effective throughput of the WiFi network. 
-                This due to the fact that the network was in an ideal condition, where only the client and the server were connected to the access point, and no other devices were generating traffic.
+                Overall, while the theoretical potential for TCP over WiFi is estimated at around 480 Mbps, the experimental results indicate that real-world conditions does not reduce that much the effective
 
             \vspace{0.2cm} % TODO: check
 
