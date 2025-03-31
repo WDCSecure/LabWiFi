@@ -129,7 +129,7 @@
 
             \item \textbf{Mixed:} \\
                 Figure~\ref{fig:throughput-mix-tcp} displays the TCP throughput for the mixed configuration. 
-                The graph shows that the throughput reaches a stable level after an initial ramp-up phase, although it remains below the Ethernet scenario and is consistent with the expected reduction due to the reliance on the wireless link.
+                While the theoretical model identifies Ethernet as the bottleneck, experimental results reveal the wireless segment’s critical impact. The graph shows that the throughput reaches a stable level after an initial ramp-up phase, although it remains below the Ethernet scenario and is consistent with the expected reduction due to the reliance on the wireless link.
 
                 \begin{figure}[ht]
                     \centering
@@ -138,8 +138,7 @@
                     \label{fig:throughput-mix-tcp}
                 \end{figure}
 
-                The round-trip time (RTT) measurements, presented in Figure~\ref{fig:rtt-mix-tcp}, indicate moderate latency, with RTT values generally remaining within a lower range compared to the pure WiFi scenario. 
-                This suggests that the wired segment helps in reducing overall latency.
+                The round-trip time (RTT) measurements in Figure~\ref{fig:rtt-mix-tcp} directly explain TCP’s throughput limitations: the protocol adapts its congestion window based on RTT, and the stark latency disparity between Ethernet (1–3 ms) and WiFi (20–50 ms) triggers overly conservative adjustments, capping throughput far below theoretical predictions.
 
                 \begin{figure}[ht]
                     \centering
@@ -250,6 +249,7 @@
             \label{tab:udp-results}
         \end{table}
 
+        \vspace{-0.3cm}
 
         \begin{enumerate}
             \item \textbf{Both Ethernet:} \\
@@ -261,7 +261,7 @@
             \\
 
             \item \textbf{Mixed:} \\
-                The mixed scenario shows UDP achieving \textbf{674.9 Mbps} (vs. TCP’s 663.7 Mbps). The wired segment reduces latency, but the wireless link remains the bottleneck. UDP’s performance aligns closely with TCP here, as both protocols are constrained by WiFi’s limitations. UDP’s throughput is \textbf{1.8\% higher} than TCP, reflecting its ability to bypass congestion control.
+                In the mixed configuration, UDP achieves an average throughput of \textbf{674.9 Mbps}, marginally higher than TCP but still far below the theoretical \textbf{957 Mbps}. While UDP bypasses TCP’s RTT-dependent limitations, the wireless link’s inherent instability, evident in its higher standard deviation (28 Mbps vs. Ethernet’s 1.73 Mbps), remains the dominant bottleneck, highlighting that protocol-agnostic medium constraints govern hybrid network performance
             \\
 
             \item[3a.] \textbf{Shared Capacity:} \\
